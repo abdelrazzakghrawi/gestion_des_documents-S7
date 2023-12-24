@@ -12,18 +12,15 @@ return new class extends Migration
     public function up()
 {
     Schema::table('users', function (Blueprint $table) {
-        $table->string('role')->default('student'); // 'student' ou 'secretary'
+        $table->string('role')->default('etudiant'); // Par défaut, l'utilisateur est un étudiant
     });
 }
 
+public function down()
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->dropColumn('role');
+    });
+}
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
-    }
 };

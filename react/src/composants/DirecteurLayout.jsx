@@ -1,9 +1,10 @@
-import { Outlet, Navigate, Link } from "react-router-dom";
-import { useStateContext } from "../contexts/Context";
+// DirecteurLayout.jsx
+import { Outlet, Link, Navigate } from "react-router-dom";
+import { useStateContext } from "../contexts/Context.jsx";
 import { useEffect } from "react";
 import axiosClient from "../axios-client.js";
 
-export default function DefaultLayout() {
+export default function DirecteurLayout() {
     const { user, token, setUser, setToken } = useStateContext();
 
     useEffect(() => {
@@ -23,23 +24,21 @@ export default function DefaultLayout() {
             });
     };
 
-    if (!token) {
-        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
+    if (!token || user.role !== 'directeur') {
+        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté ou n'est pas directeur
         return <Navigate to="/login" />;
     }
 
     return (
-        <div id="defaultLayout">
+        <div id="directeurLayout">
             <aside>
-                <Link to="/dashboard">Dashboard</Link>
-                <Link to="/users">Users</Link>
-                <Link to="/Document">Document</Link>
-                {user.role === 'secretaire' && <Link to="/dashboard/secretaire">Tableau de bord Secrétaire</Link>}
+                <Link to="/dashboard/directeur">Tableau de bord Directeur</Link>
+                {/* Ajoutez d'autres liens spécifiques au directeur si nécessaire */}
             </aside>
             <div className="content">
                 <header>
                     <div>
-                        UPFDOC
+                        UPFDOC - Directeur
                     </div>
                     <div>
                         {user.name}

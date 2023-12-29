@@ -2,15 +2,17 @@ import { Outlet, Navigate,  } from "react-router-dom";
 import { useStateContext } from "../contexts/Context";
 // SecretaireLayout.jsx
 
-const SecretaireLayout = () => {
+const AdminLayout = () => {
     const { role, token } = useStateContext();
 
     // Si l'utilisateur n'est pas connecté, le rediriger vers la page de connexion
-    if (!token || role !== 'admin') {
+    if (!token) {
         return <Navigate to="/login" />;
     }
 
-
+    if (role !== 'admin') {
+        return <Navigate to="/unauthorized" />;
+    }
 
     return (
         <div className="admin-layout">
@@ -26,5 +28,5 @@ const SecretaireLayout = () => {
     );
 };
 
-export default SecretaireLayout;
+export default AdminLayout;
 

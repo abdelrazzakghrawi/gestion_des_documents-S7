@@ -1,5 +1,5 @@
 // router.jsx
-import {  createBrowserRouter } from "react-router-dom";
+import {  Navigate, createBrowserRouter } from "react-router-dom";
 import Login from "./views/Login/Login.jsx";
 import Signup from "./views/Login/Signup.jsx";
 import Users from "./views/EtudiantViews/Users.jsx";
@@ -18,7 +18,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <DefaultLayout />,
     children: [
-
+        {
+            path:'/',
+            element:<Navigate to="/dashboard"/>
+        },
       {
         path: "/dashboard",
         element: <Dashboard />
@@ -54,6 +57,7 @@ const router = createBrowserRouter([
     path: "/secretaire",
     element: <SecretaireLayout />,
     children: [
+
 
       {
         path: "dashboardSecretaire",

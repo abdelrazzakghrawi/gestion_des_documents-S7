@@ -6,11 +6,14 @@ const SecretaireLayout = () => {
     const { role, token } = useStateContext();
 
     // Si l'utilisateur n'est pas connecté, le rediriger vers la page de connexion
-    if (!token || role !== 'secretaire') {
+    if (!token) {
         return <Navigate to="/login" />;
     }
 
-    
+    // Si l'utilisateur n'est pas un secrétaire, rediriger vers une page non autorisée
+    if (role !== 'secretaire') {
+        return <Navigate to="/unauthorized" />;
+    }
 
     return (
         <div className="secretaire-layout">

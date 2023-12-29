@@ -30,13 +30,14 @@ export default function DefaultLayout() {
     // Rediriger si l'utilisateur n'est pas un utilisateur général (ni secrétaire, ni admin)
     if (role === 'secretaire' || role === 'admin') {
         return <Navigate to={`/${role}/dashboard`} />;
-    }   
+    }
     return (
         <div id="defaultLayout">
             <aside>
                 <Link to="/dashboard">Dashboard</Link>
-                <Link to="/users">Users</Link>
                 <Link to="/Document">Document</Link>
+                <Link to="/users">Users</Link>
+            
 
             </aside>
             <div className="content">

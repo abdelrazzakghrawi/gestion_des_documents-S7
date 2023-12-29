@@ -38,7 +38,7 @@ const Login = () => {
         setUser(data.user);
         setToken(data.token);
         setRole(data.role); // Stockage du rôle dans le contexte
-
+        setRole(data.user.role);
         // Redirection en fonction du rôle
         switch (data.role) {
             case 'secretaire':

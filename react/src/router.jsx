@@ -1,5 +1,5 @@
 // router.jsx
-import { Navigate, createBrowserRouter } from "react-router-dom";
+import {  createBrowserRouter } from "react-router-dom";
 import Login from "./views/Login/Login.jsx";
 import Signup from "./views/Login/Signup.jsx";
 import Users from "./views/EtudiantViews/Users.jsx";
@@ -9,18 +9,17 @@ import DefaultLayout from "./composants/DefaultLayout.jsx";
 import GuestLayout from "./composants/GuestLayout.jsx";
 import Document from "./views/EtudiantViews/Document.jsx";
 import SecretaireLayout from "./composants/SecretaireLayout.jsx";
-import DirecteurLayout from "./composants/DirecteurLayout.jsx";
+import AdminLayout from "./composants/AdminLayout.jsx";
+import DashboardSecretaire from "./views/SecretaryViews/DashboardSecretaire.jsx";
+import DashboardAdmin from "./views/AdminViews/dashboardAdmin.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <DefaultLayout />,
     children: [
-      {
-        path: '/',
-        element: <Navigate to="/dashboard" />
-      },
-      {
+
+      { 
         path: "/dashboard",
         element: <Dashboard />
       },
@@ -32,11 +31,8 @@ const router = createBrowserRouter([
         path: "/document",
         element: <Document />,
       },
-      // Ne pas inclure SecretaireLayout ici
-      // Ne pas inclure DirecteurLayout ici
     ]
-  },
-  {
+  }, {
     path: "/",
     element: <GuestLayout />,
     children: [
@@ -51,23 +47,33 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "/secretaire",
-    element: <SecretaireLayout />,
-    children: [
-      // Ajoutez d'autres routes spécifiques au tableau de bord du secrétaire si nécessaire
-    ]
-  },
-  {
-    path: "/directeur",
-    element: <DirecteurLayout />,
-    children: [
-      // Ajoutez d'autres routes spécifiques au tableau de bord du directeur si nécessaire
-    ]
-  },
-  {
     path: "*",
     element: <NotFound />
   },
+  {
+    path: "/secretaire",
+    element: <SecretaireLayout />,
+    children: [
+
+      {
+        path: "dashboardSecretaire",
+        element: <DashboardSecretaire />
+      },
+
+      // Other routes for the secretaire
+    ]
+  },
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "dashboardAdmin",
+        element: <DashboardAdmin />
+      },
+      // Other routes for the directeur
+    ]
+  }
 ]);
 
 export default router;

@@ -1,15 +1,14 @@
-// DirecteurLayout.jsx
-import { Outlet, Link, Navigate } from "react-router-dom";
+import { Outlet, Navigate, Link } from "react-router-dom";
 import { useStateContext } from "../contexts/Context.jsx";
 import { useEffect } from "react";
 import axiosClient from "../axios-client.js";
 
-export default function DirecteurLayout() {
+const DirecteurLayout = () => {
     const { user, token, setUser, setToken } = useStateContext();
 
     useEffect(() => {
-        // Chargement des informations utilisateur au montage du composant
-        axiosClient.get('/user')
+        // Chargement des informations du directeur au montage du composant
+        axiosClient.get('/directeur')
             .then(({ data }) => {
                 setUser(data);
             });
@@ -24,21 +23,22 @@ export default function DirecteurLayout() {
             });
     };
 
-    if (!token || user.role !== 'directeur') {
-        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté ou n'est pas directeur
+    if (!token) {
+        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
         return <Navigate to="/login" />;
     }
 
     return (
         <div id="directeurLayout">
             <aside>
-                <Link to="/dashboard/directeur">Tableau de bord Directeur</Link>
-                {/* Ajoutez d'autres liens spécifiques au directeur si nécessaire */}
+                <Link to="/DasboardDirecteur">DasboardDirecteur</Link>
+                <Link to="/reports">Rapports</Link>
+                {/* Ajoutez d'autres liens spécifiques au directeur */}
             </aside>
             <div className="content">
                 <header>
                     <div>
-                        UPFDOC - Directeur
+                        UPFDOC
                     </div>
                     <div>
                         {user.name}
@@ -51,4 +51,6 @@ export default function DirecteurLayout() {
             </div>
         </div>
     );
-}
+};
+
+export default DirecteurLayout;

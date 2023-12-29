@@ -11,7 +11,7 @@ const StateContext = createContext({
 // eslint-disable-next-line react/prop-types
 export const ContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
-    const [role, setRole] = useState(null); 
+    const [role, setRole] = useState(null);
     const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN'));
 
     const setToken = (newToken) => {

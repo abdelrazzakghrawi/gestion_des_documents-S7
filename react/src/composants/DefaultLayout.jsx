@@ -24,15 +24,13 @@ export default function DefaultLayout() {
     };
 
     if (!token) {
-        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
         return <Navigate to="/login" />;
     }
 
-    // Redirection en fonction du rôle de l'utilisateur
-    if (role === 'secretaire') {
-        return <Navigate to="/secretairelayout" />;
-    }
-
+    // Rediriger si l'utilisateur n'est pas un utilisateur général (ni secrétaire, ni admin)
+    if (role === 'secretaire' || role === 'admin') {
+        return <Navigate to={`/${role}/dashboard`} />;
+    }   
     return (
         <div id="defaultLayout">
             <aside>

@@ -1,56 +1,30 @@
-import { Outlet, Navigate, Link } from "react-router-dom";
-import { useStateContext } from "../contexts/Context.jsx";
-import { useEffect } from "react";
-import axiosClient from "../axios-client.js";
+import { Outlet, Navigate,  } from "react-router-dom";
+import { useStateContext } from "../contexts/Context";
+// SecretaireLayout.jsx
 
-const DirecteurLayout = () => {
-    const { user, token, setUser, setToken } = useStateContext();
+const SecretaireLayout = () => {
+    const { role, token } = useStateContext();
 
-    useEffect(() => {
-        // Chargement des informations du directeur au montage du composant
-        axiosClient.get('/directeur')
-            .then(({ data }) => {
-                setUser(data);
-            });
-    }, [setUser]);
-
-    const onLogout = (ev) => {
-        ev.preventDefault();
-        axiosClient.post('/logout')
-            .then(() => {
-                setUser({});
-                setToken(null);
-            });
-    };
-
-    if (!token) {
-        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
+    // Si l'utilisateur n'est pas connecté, le rediriger vers la page de connexion
+    if (!token || role !== 'admin') {
         return <Navigate to="/login" />;
     }
 
+
+
     return (
-        <div id="directeurLayout">
-            <aside>
-                <Link to="/DasboardDirecteur">DasboardDirecteur</Link>
-                <Link to="/reports">Rapports</Link>
-                {/* Ajoutez d'autres liens spécifiques au directeur */}
-            </aside>
-            <div className="content">
-                <header>
-                    <div>
-                        UPFDOC
-                    </div>
-                    <div>
-                        {user.name}
-                        <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
-                    </div>
-                </header>
-                <main>
-                    <Outlet />
-                </main>
-            </div>
+        <div className="admin-layout">
+            {/* Votre contenu spécifique au layout de la secrétaire */}
+            <nav>
+                {/* Vos liens de navigation */}
+            </nav>
+            <main>
+                {/* Outlet rendra les composants enfants spécifiés dans les routes */}
+                <Outlet />
+            </main>
         </div>
     );
 };
 
-export default DirecteurLayout;
+export default SecretaireLayout;
+

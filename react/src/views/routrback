@@ -1,7 +1,6 @@
 import { Outlet, Navigate,  } from "react-router-dom";
 import { useStateContext } from "../contexts/Context";
 // SecretaireLayout.jsx
-
 const SecretaireLayout = () => {
     const { role, token } = useStateContext();
 

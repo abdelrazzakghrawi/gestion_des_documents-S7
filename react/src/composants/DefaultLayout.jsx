@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import axiosClient from "../axios-client.js";
 
 export default function DefaultLayout() {
-    const { user, token, setUser, setToken } = useStateContext();
+    const { user, token,role, setUser, setToken } = useStateContext();
 
     useEffect(() => {
         // Chargement des informations utilisateur au montage du composant
@@ -28,13 +28,18 @@ export default function DefaultLayout() {
         return <Navigate to="/login" />;
     }
 
+    // Redirection en fonction du rôle de l'utilisateur
+    if (role === 'secretaire') {
+        return <Navigate to="/secretairelayout" />;
+    }
+
     return (
         <div id="defaultLayout">
             <aside>
                 <Link to="/dashboard">Dashboard</Link>
                 <Link to="/users">Users</Link>
                 <Link to="/Document">Document</Link>
-                {user.role === 'secretaire' && <Link to="/dashboard/secretaire">Tableau de bord Secrétaire</Link>}
+
             </aside>
             <div className="content">
                 <header>

@@ -2,14 +2,15 @@ import  { useRef, useState } from 'react';
 import axiosClient from '../../axios-client.js';
 import { useStateContext } from '../../contexts/Context.jsx';
 import '../Login/LoginCSS/Login.css';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const [errors, setErrors] = useState(null);
-    const { setUser, setToken } = useStateContext();
+    const { setUser, setToken,setRole } = useStateContext();
     const [isAdmin, setIsAdmin] = useState(true);
+    const navigate = useNavigate();
 
     // Fonction pour gérer le clic sur le bouton Admin
     const handleAdminClick = () => {
@@ -33,29 +34,37 @@ const Login = () => {
 
         // Envoi de la requête au serveur pour la connexion
         axiosClient.post('/login', payload)
-            .then(({ data }) => {
-                // Mise à jour du contexte global avec les informations utilisateur
-                setUser(data.user);
-                setToken(data.token);
-            })
-            .catch((err) => {
-                // Gestion des erreurs de validation du formulaire
-                const response = err.response;
-                if (response && response.status === 422) {
+    .then(({ data }) => {
+        setUser(data.user);
+        setToken(data.token);
+        setRole(data.role); // Stockage du rôle dans le contexte
 
-                    if (response.data.errors) {
-
-                        setErrors(response.data.errors);
-
-                    } else if (response.data.message) {
-
-                        setErrors({
-                            email: [response.data.message],
-                        });
-                    }
-                }
-            });
-    };
+        // Redirection en fonction du rôle
+        switch (data.role) {
+            case 'secretaire':
+                navigate('/secretaire/dashboardSecretaire');
+                break;
+            case 'student':
+                navigate('/dashboard');
+                break;
+            case 'admin':
+                navigate('/admin/dashboardAdmin'); // Remplacez par la route de dashboard de l'admin
+                break;
+            default:
+                navigate('/'); // Redirection par défaut
+                break;
+        }
+    })
+        .catch((err) => {
+            // Gestion des erreurs de validation du formulaire
+            const response = err.response;
+            if (response && response.status === 422) {
+                setErrors(response.data.errors || { email: [response.data.message] });
+            } else {
+                setErrors({ email: ["Une erreur de serveur s'est produite. Veuillez réessayer."] });
+            }
+        });
+};
 
     return (
         <div className={`container ${isAdmin ? 'active' : ''}`}>

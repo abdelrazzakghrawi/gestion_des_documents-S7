@@ -3,13 +3,15 @@ import { createContext, useContext, useState } from "react";
 const StateContext = createContext({
     user: null,
     token: null,
+    role: null, // Ajouter cette ligne
     setUser: () => {},
-    setToken: () => {}
+    setToken: () => {},
+    setRole: () => {}, // Ajouter cette ligne
 });
-
 // eslint-disable-next-line react/prop-types
 export const ContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
+    const [role, setRole] = useState(null); 
     const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN'));
 
     const setToken = (newToken) => {
@@ -25,8 +27,10 @@ export const ContextProvider = ({ children }) => {
         <StateContext.Provider value={{
             user,
             token,
+            role, // Ajoutez le rôle ici
             setUser,
-            setToken
+            setToken,
+            setRole // Ajoutez la fonction pour définir le rôle
         }}>
             {children}
         </StateContext.Provider>

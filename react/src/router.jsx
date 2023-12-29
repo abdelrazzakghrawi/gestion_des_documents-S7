@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     element: <DefaultLayout />,
     children: [
 
-      { 
+      {
         path: "/dashboard",
         element: <Dashboard />
       },

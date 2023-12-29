@@ -74,4 +74,17 @@ class AuthController extends Controller
         // Retourner une réponse vide avec le statut 204 (No Content)
         return response('', 204);
     }
+
+    public function getDirecteurData(Request $request)
+    {
+        // Logique pour récupérer et retourner les données du directeur
+        // Exemple: retourner les détails de l'utilisateur si c'est un directeur
+        $user = $request->user();
+        if ($user->role === 'directeur') {
+            return response()->json($user);
+        } else {
+            return response()->json(['message' => 'Accès non autorisé'], 403);
+        }
+    }
 }
+

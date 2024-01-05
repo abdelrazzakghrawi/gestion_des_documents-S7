@@ -1,0 +1,21 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  .collapsible-card {
+    margin: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    padding: 0px 15px;
+    overflow: hidden;
+  }
+  .header {
+    height: 40px;
+    width: 100%;
+  }
+  .content {
+    transition: height 0.4s ease;
+    padding: 0px 20px;
+    overflow: hidden;
+  }
+  

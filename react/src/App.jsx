@@ -24,6 +24,7 @@ import Accueiladmin from './components/admin/Admin/accueil';
 import Doc from './components/Document/doc';
 import Rel from './components/Document/Releve';
 import Att from './components/Document/scolarité';
+import Paiement from './components/Document/paiement';
 
 
 
@@ -94,6 +95,7 @@ function App() {
 
           <Route path="/documents/attestation" element={<Att />} />
           <Route path="/documents/releve" element={<Rel />} />
+          <Route path="/documents/paiement" element={<Paiement />} />
 
 
         </Routes>

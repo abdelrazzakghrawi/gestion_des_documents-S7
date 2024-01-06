@@ -38,6 +38,10 @@ function App() {
   return (
 
     <div className="App">
+
+<style dangerouslySetInnerHTML={{__html: "@media print {nav { display: none!important; } }\n" }} />
+
+
        <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">Navbar</a>
@@ -95,7 +99,7 @@ function App() {
           <Route path="/documents/paiement" element={<Paiement />} />
           <Route path="/documents/presentation_filliere" element={<Presentation />} />
           <Route path="/documents/emploi" element={<Emploi />} />
-          <Route path="/documents/vacance" element={<Vacance />} />
+          <Route path="/documents/vacances" element={<Vacance />} />
 
 
         </Routes>

@@ -21,7 +21,7 @@ import Accueiladmin from './components/admin/Admin/accueil';
 
 
 
-import Doc from './components/Document/doc';
+import Doc from './components/Etudiant/liste_document';
 import Rel from './components/Document/Releve';
 import Att from './components/Document/scolarité';
 import Paiement from './components/Document/paiement';

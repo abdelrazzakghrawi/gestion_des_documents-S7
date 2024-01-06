@@ -2,7 +2,8 @@
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\SecretaireController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,3 +25,22 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 
+ 
+ 
+
+
+// Etudiant 
+ 
+Route::apiResource('/etudiants', EtudiantController::class);
+Route::post('/add_etudiants', [EtudiantController::class, 'store']);
+Route::get('/etudiants/{id}', [EtudiantController::class, 'show']);
+Route::put('/etudiants/{id}', [EtudiantController::class, 'update']);
+
+
+
+
+ // Secretaire
+ Route::post('/add_secretaires', [SecretaireController::class, 'store']);
+ Route::apiResource('/secretaires', SecretaireController::class);
+ Route::get('/secretaires/{id}', [SecretaireController::class, 'show']);
+ Route::put('/secretaires/{id}', [SecretaireController::class, 'update']);

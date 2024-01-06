@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class EtudiantController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+  
 
     public function index()
     {

@@ -38,7 +38,7 @@ function App() {
   return (
 
     <div className="App">
-       {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
+       <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">Navbar</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,7 @@ function App() {
           
         </div>
       </div>
-    </nav> */}
+    </nav>
       <Router>
         <Routes>
 
@@ -90,9 +90,6 @@ function App() {
 
 
           <Route path="/Documents" element={<Doc />} />
-
-
-
           <Route path="/documents/attestation" element={<Att />} />
           <Route path="/documents/releve" element={<Rel />} />
           <Route path="/documents/paiement" element={<Paiement />} />

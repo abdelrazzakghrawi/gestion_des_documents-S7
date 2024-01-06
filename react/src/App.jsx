@@ -30,6 +30,10 @@ import Emploi from './components/Document/emploi';
 import Vacance from './components/Document/vacance';
 
 
+
+import Unknow from './views/NotFound';
+
+
  
 
 
@@ -100,6 +104,10 @@ function App() {
           <Route path="/documents/presentation_filliere" element={<Presentation />} />
           <Route path="/documents/emploi" element={<Emploi />} />
           <Route path="/documents/vacances" element={<Vacance />} />
+
+
+          <Route path="*" element={<Unknow />} />
+
 
 
         </Routes>

@@ -27,6 +27,7 @@ import Att from './components/Document/scolarité';
 import Paiement from './components/Document/paiement';
 import Presentation from './components/Document/presentationfilliere';
 import Emploi from './components/Document/emploi';
+import Vacance from './components/Document/vacance';
 
 
  
@@ -97,6 +98,7 @@ function App() {
           <Route path="/documents/paiement" element={<Paiement />} />
           <Route path="/documents/presentation_filliere" element={<Presentation />} />
           <Route path="/documents/emploi" element={<Emploi />} />
+          <Route path="/documents/vacance" element={<Vacance />} />
 
 
         </Routes>

@@ -17,7 +17,7 @@ import tampon from './tampon.png'; // Make sure the logo is in the same director
             <title>Attestation d'Inscription</title>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
             <style dangerouslySetInnerHTML={{__html: "\n        @page {\n            size: A4;\n            margin: 0;\n        }\n        \n\n        body {\n            box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);\n            width: 210mm;\n            height: 297mm;\n            margin: 0 auto;\n            padding: 20mm;\n            background: white;\n            color: black;\n            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;\n            position: relative; /* Pour positionner correctement les éléments absolus */\n        }\n\n        .header {\n            text-align: center;\n            border-bottom: 2px solid black;\n            padding-bottom: 10px;\n            margin-bottom: 100px;\n            margin-top: -110px;\n\n\n        }\n\n        .header-logo {\n            width: 200px;\n            /* Adjust as needed */\n            height: auto;\n        }\n\n        .header-info {\n            text-align: left;\n            font-size: 0.85em;\n            margin-top: -90px;\n        }\n\n        .header-info p {\n            margin: 2px;\n        }\n\n        .title {\n            text-align: center;\n            font-size: 1.5em;\n            font-weight: bold;\n            margin-bottom: 50px;\n        }\n\n        .footer {\n            text-align: center;\n            font-size: 0.75em;\n            margin-top: 30px;\n            border-top: 1px solid #ccc;\n            padding-top: 10px;\n        }\n\n        @media print {\n            body {\n                box-shadow: 0 0 0.0cm rgba(255, 255, 255, 1);\n            }\n        }\n\n        .signature {\n            text-align: right;\n            margin-top: 250px;\n        }\n\n        .signature img {\n            width: 120px;\n            /* Adjust as needed */\n            height: auto;\n        }\n\n        .signature {\n            position: relative;\n            text-align: right;\n           \n        }\n\n        .signature img.signature-image {\n            width: 120px;\n            /* Adjust as needed */\n            height: auto;\n        }\n\n        .signature img.stamp {\n            position: absolute;\n            width: 100px;\n            /* Adjust as needed */\n            height: auto;\n            right: 50px;\n            /* Adjust as needed */\n            z-index: 1;\n        }\n    " }} />
-            body&gt;
+       
             <div className="header">
             <img src={logo} alt="Logo" className="header-logo" />
               <div className="header-info">
@@ -121,8 +121,6 @@ import tampon from './tampon.png'; // Make sure the logo is in the same director
               </tbody>
             </table>
             <div className="signature">
-              <p>Belghrib Mohamed</p>
-              <p>Responsable Service Scolarité</p>
               <img src={signature} alt="Signature" className="signature-image" />
                 <img src={tampon} alt="Tampon" className="stamp" />
             </div>

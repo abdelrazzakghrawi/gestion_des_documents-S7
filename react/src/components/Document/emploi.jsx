@@ -26,7 +26,7 @@ function emploi() {
                             <p>Mail: info@upf.ac.ma</p>
                         </div>
                     </div>
-                    <div className="title">Attestation de Scolarité</div>
+                    <div className="title">Emploi du temps</div>
                     <div className="content">
                         <table>
                             <thead>

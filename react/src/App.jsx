@@ -26,6 +26,7 @@ import Rel from './components/Document/Releve';
 import Att from './components/Document/scolarité';
 import Paiement from './components/Document/paiement';
 import Presentation from './components/Document/presentationfilliere';
+import Emploi from './components/Document/emploi';
 
 
  
@@ -95,14 +96,12 @@ function App() {
           <Route path="/documents/releve" element={<Rel />} />
           <Route path="/documents/paiement" element={<Paiement />} />
           <Route path="/documents/presentation_filliere" element={<Presentation />} />
+          <Route path="/documents/emploi" element={<Emploi />} />
 
 
         </Routes>
       </Router>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+ 
     </div>
   );
 }

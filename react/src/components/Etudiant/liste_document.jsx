@@ -21,13 +21,13 @@ function liste_document() {
                                 </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
-                                        <a href="#!" className="food-card_title">Attestation de Scolarite</a>
-                                        <a  className="food-card_author">Necessite Validation </a>
+                                        <span className="food-card_title">Attestation de Scolarite</span>
+                                        <span className="food-card_author">Necessite Validation </span>
                                     </div>
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
-                                        <button className="btn btn-primary">Demander</button>
-                                        <button className="btn btn-secondary">Demander</button>
+                                        <a target="_blank" className="btn btn-primary">Demander</a>
+                                        <a target="_blank" href='/documents/attestation' className="btn btn-secondary">Imprimer</a>
                                     </div>
                                 </div>
                             </div>
@@ -40,13 +40,13 @@ function liste_document() {
                                 </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
-                                        <a href="#!" className="food-card_title">Relevé de Notes</a>
-                                        <a href="#!" className="food-card_author">Necessite Validation </a>
+                                        <span   className="food-card_title">Relevé de Notes</span >
+                                        <span className="food-card_author">Necessite Validation </span >
                                     </div>
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
-                                        <button className="btn btn-primary">Demander</button>
-                                        <button className="btn btn-secondary">Imprimer</button>
+                                        <a target="_blank" className="btn btn-primary">Demander</a>
+                                        <a target="_blank" href='/documents/releve' className="btn btn-secondary">Imprimer</a>
                                     </div>
                                 </div>
                             </div>
@@ -61,11 +61,11 @@ function liste_document() {
                                 </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
-                                        <a href="#!" className="food-card_title">Fiche de paiement</a>
+                                        <span className="food-card_title">Fiche de paiement</span >
                                     </div>
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
-                                        <button className="btn btn-secondary">Imprimer</button>
+                                        <a target="_blank" href='/documents/paiement' className="btn btn-secondary">Imprimer</a>
                                     </div>
                                 </div>
                             </div>
@@ -78,11 +78,11 @@ function liste_document() {
                                 </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
-                                        <a href="#!" className="food-card_title">Liste des Vacances</a>
+                                        <span  className="food-card_title">Liste des Vacances</span>
                                     </div>
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
-                                        <button className="btn btn-secondary">Imprimer</button>
+                                        <a target="_blank" href='/documents/vacances' className="btn btn-secondary">Imprimer</a>
                                     </div>
                                 </div>
                             </div>
@@ -97,11 +97,11 @@ function liste_document() {
                                 </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
-                                        <a href="#!" className="food-card_title">Emploi de temps</a>
+                                        <span  className="food-card_title">Emploi de temps</span>
                                     </div>
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
-                                        <button className="btn btn-secondary">Imprimer</button>
+                                        <a target="_blank" href='/documents/emploi' className="btn btn-secondary">Imprimer</a >
                                     </div>
                                 </div>
                             </div>
@@ -114,11 +114,11 @@ function liste_document() {
                                 </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
-                                        <a href="#!" className="food-card_title">Presentation de la fillière</a>
+                                        <span  className="food-card_title">Presentation de la fillière</span>
                                     </div>
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
-                                        <button className="btn btn-secondary">Imprimer</button>
+                                        <a target="_blank" className="btn btn-secondary">Imprimer</a>
                                     </div>
                                 </div>
                             </div>

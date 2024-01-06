@@ -25,12 +25,10 @@ import Doc from './components/Document/doc';
 import Rel from './components/Document/Releve';
 import Att from './components/Document/scolarité';
 import Paiement from './components/Document/paiement';
+import Presentation from './components/Document/presentationfilliere';
 
 
-
-import { Dropdown } from 'react-bootstrap';
  
-
 
 
  
@@ -38,7 +36,7 @@ function App() {
   return (
 
     <div className="App">
-       <nav className="navbar navbar-expand-lg navbar-light bg-light">
+       {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">Navbar</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +60,7 @@ function App() {
           
         </div>
       </div>
-    </nav>
+    </nav> */}
       <Router>
         <Routes>
 
@@ -96,6 +94,7 @@ function App() {
           <Route path="/documents/attestation" element={<Att />} />
           <Route path="/documents/releve" element={<Rel />} />
           <Route path="/documents/paiement" element={<Paiement />} />
+          <Route path="/documents/presentation_filliere" element={<Presentation />} />
 
 
         </Routes>

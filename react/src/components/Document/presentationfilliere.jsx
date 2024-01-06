@@ -120,43 +120,51 @@ function presentationfilliere() {
         <table className="module-table">
           <thead>
             <tr>
-              <th>S7</th>
+              <th>S9</th>
               <th>S8</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>J2EE</td>
-              <td>Technologie .NET (ASP.NET et ADD Développement)</td>
+              <td>MDA/Cloud Computing</td>
+              <td>PFE</td>
             </tr>
             <tr>
-              <td>Développement d'applications mobiles</td>
-              <td>Frameworks web avancés</td>
+              <td>Datamining et informatique décisionnelle (Datawarhouse) Référentiels des systèmes d'informations
+</td>
+              <td>PFE</td>
             </tr>
             <tr>
-              <td>Technologie Oracle</td>
-              <td>Traitement d'images et Deep Learning</td>
+              <td>Référentiels des systèmes
+d'informations
+</td>
+              <td>PFE</td>
             </tr>
             <tr>
-              <td>Génie logiciel et Design patterns</td>
-              <td>Intelligence artificielle 2</td>
+              <td>ERP et stratégie d'entreprise
+</td>
+              <td>PFE</td>
             </tr>
             <tr>
-              <td>Programmation système et réseau</td>
-              <td>Architecteur distribuée EJB / SOA</td>
+              <td>Business Intelligence
+</td>
+              <td>PFE</td>
             </tr>
             <tr>
-              <td>Théorie des langages et compilation</td>
-              <td>Droit appliqué</td>
+              <td> virtualisation & sécurité avancée
+</td>
+              <td>PFE</td>
             </tr>
             <tr>
-              <td>Cryptographie / sécurité informatique</td>
-              <td>Technique de recherche d'emploi et Gestion de carrière</td>
+              <td> Administration base de données : Oracle
+</td>
+              <td>PFE</td>
             </tr>
             <tr>
-              <td>Projet</td>
-              <td>Projet</td>
+              <td> Big data</td>
+              <td>PFE</td>
             </tr>
+     
           </tbody>
         </table>
       </div>

@@ -11,89 +11,41 @@ function paiement() {
       }, []);
       
     return (
-            <div>
-                <meta charSet="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>University Timetable</title>
-                <style dangerouslySetInnerHTML={{ __html: " table {   width: 80%;   margin: 20px auto;   border-collapse: collapse; } table, th, td {   border: 1px solid #333; } th, td {   padding: 10px;   text-align: left; } th {   background-color: #555;   color: #fff; } td {   background-color: #eee; } tr:nth-child(even) td {   background-color: #ddd; }" }} />
-                <div className="page">
-                    <div className="header">
-                    <img src={logo} alt="Logo" className="header-logo" />
-                        <div className="header-info">
-                            <p>Université privée de fes</p>
-                            <p>Fès 30000</p>
-                            <p>Phone:0661-446024 </p>
-                            <p>Mail: info@upf.ac.ma</p>
-                        </div>
-                    </div>
-                    <div className="title">Attestation de Scolarité</div>
-                    <div className="content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Jour</th>
-                                    <th>8h30-10h</th>
-                                    <th>10h15-11h45</th>
-                                    <th>14h30-16h</th>
-                                    <th>16h15-17h45</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Lundi</td>
-                                    <td>Cryptologie/Sécurité informatique</td>
-                                    <td>Cryptologie/Sécurité informatique</td>
-                                    <td>Génie logiciel et design patterns</td>
-                                    <td>Génie logiciel et design patterns</td>
-                                </tr>
-                                <tr>
-                                    <td>Mardi</td>
-                                    <td>Technologie Oracle</td>
-                                    <td>Technologie Oracle</td>
-                                    <td>Projet tutoré</td>
-                                    <td>Projet tutoré</td>
-                                </tr>
-                                <tr>
-                                    <td>Mercredi</td>
-                                    <td>Programmation et système réseaux</td>
-                                    <td>Programmation et système réseaux</td>
-                                    <td>Développements mobiles</td>
-                                    <td>Développements mobiles</td>
-                                </tr>
-                                <tr>
-                                    <td>Jeudi</td>
-                                    <td>Compilation</td>
-                                    <td>Compilation</td>
-                                    <td>JEE</td>
-                                    <td>JEE</td>
-                                </tr>
-                                <tr>
-                                    <td>Vendredi</td>
-
-                                    <td />
-                                    <td />
-                                    <td />
-                                    <td />
-                                </tr>
-                                <tr>
-                                    <td>Samedi</td>
-
-                                    <td />
-                                    <td />
-                                    <td />
-                                    <td />
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div className="signature">
-
-                            <img src={signature} alt="Signature" className="signature-image" />
+<div>
+  <meta charSet="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attestation d'Inscription</title>
+  <style dangerouslySetInnerHTML={{__html: "\n  @page {\n    size: A4;\n    margin: 0;\n  }\n  @media print {\n    body {\n      width: 210mm;\n      height: 297mm;\n      margin: 10mm auto;\n      box-shadow: none;\n    }\n    .page {\n      border: initial;\n      border-radius: initial;\n      width: initial;\n      min-height: initial;\n      box-shadow: initial;\n      background: initial;\n      page-break-after: always;\n    }\n  }\n  body {\n    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);\n    width: 210mm;\n    height: 297mm;\n    margin: 0 auto;\n    padding: 20mm;\n    background: white;\n    color: black;\n    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  }\n  .header {\n    text-align: center;\n    border-bottom: 2px solid black;\n    padding-bottom: 10px;\n    margin-bottom: 100px;\n    margin-top: -110px;\n    \n    \n  }\n  .header-logo {\n    width: 200px; /* Adjust as needed */\n    height: auto;\n  }\n  .header-info {\n    text-align: left;\n    font-size: 0.85em;\n    margin-top: -90px;\n  }\n  .header-info p {\n    margin: 2px;\n  }\n  .title {\n    text-align: center;\n    font-size: 1.5em;\n    font-weight: bold;\n    margin-bottom: 150px;\n  }\n  .content {\n    text-align: left;\n    line-height: 1.4;\n    font-size: 1em;\n  }\n  .footer {\n    text-align: center;\n    font-size: 0.75em;\n    margin-top: 30px;\n    border-top: 1px solid #ccc;\n    padding-top: 10px;\n  }\n  @media print {\n    body {\n    box-shadow: 0 0 0.0cm rgba(255, 255, 255, 1);\n   }\n    }\n    .signature {\n    text-align: right;\n    margin-top: 250px;\n  }\n  .signature img {\n    width: 120px; /* Adjust as needed */\n    height: auto;\n  }\n\n    .signature {\n    position: relative;\n    text-align: right;\n    margin-top: 250px;\n  }\n  .signature img.signature-image {\n    width: 120px; /* Adjust as needed */\n    height: auto;\n  }\n  .signature img.stamp {\n    position: absolute;\n    width: 100px; /* Adjust as needed */\n    height: auto;\n    right: 50px; /* Adjust as needed */\n     z-index: 1;\n  }\n" }} />
+  <div className="page">
+    <div className="header">
+    <img src={logo} alt="Logo" className="header-logo" />
+      <div className="header-info">
+        <p>Université privée de fes</p>
+        <p>Fès 30000</p>
+        <p>Phone:0661-446024 </p>
+        <p>Mail: info@upf.ac.ma</p>
+      </div>
+    </div>
+    <div className="title">Avis de Paiement des Frais de Scolarité</div>
+    <div className="content">
+      <p className="card-text">Nom de l'étudiant: [Nom de l'étudiant]</p>
+      <p className="card-text">Programme: [Nom du programme]</p>
+      <p className="card-text">Semestre: [Semestre]</p>
+      <p className="card-text">Montant Payee: 100000 Dh</p>
+      <p className="card-text">Montant Restant: 100000 Dh</p>
+      <p className="card-text">Montant Total: 100000 Dh</p>
+      <p className="card-text">Date Limite de Paiement: [Date]</p>
+    </div>
+    <div className="signature">
+      <p>Fait à Fes, Le 01/01/2024</p>
+      <p>Belghrib Mohamed</p>
+      <p>Responsable Service Scolarité</p>
+      <img src={signature} alt="Signature" className="signature-image" />
                             <img src={tampon} alt="Tampon" className="stamp" />
+    </div>
+  </div>
+</div>
 
-                        </div>
-                    </div>
-                    <style dangerouslySetInnerHTML={{ __html: " @page {   size: A4;   margin: 0; } @media print {   body {     width: 210mm;     height: 297mm;     margin: 10mm auto;     box-shadow: none;   }   .page {     border: initial;     border-radius: initial;     width: initial;     min-height: initial;     box-shadow: initial;     background: initial;     page-break-after: always;   } } body {   box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);   width: 210mm;   height: 297mm;   margin: 0 auto;   padding: 20mm;   background: white;   color: black;   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; } .header {   text-align: center;   border-bottom: 2px solid black;   padding-bottom: 10px;   margin-bottom: 100px;   margin-top: -110px;       } .header-logo {   width: 200px; /* Adjust as needed */   height: auto; } .header-info {   text-align: left;   font-size: 0.85em;   margin-top: -90px; } .header-info p {   margin: 2px; } .title {   text-align: center;   font-size: 1.5em;   font-weight: bold;   margin-bottom: 150px; } .content {   text-align: left;   line-height: 1.4;   font-size: 1em; } .signature {   text-align: right;   margin-top: 250px; } .signature img {   width: 120px; /* Adjust as needed */   height: auto; } .footer {   text-align: center;   font-size: 0.75em;   margin-top: 30px;   border-top: 1px solid #ccc;   padding-top: 10px; } @media print {   body {   box-shadow: 0 0 0.0cm rgba(255, 255, 255, 1);  }   }   .signature {   position: relative;   text-align: right;   margin-top: 250px; } .signature img.signature-image {   width: 120px; /* Adjust as needed */   height: auto; } .signature img.stamp {   position: absolute;   width: 100px; /* Adjust as needed */   height: auto;   right: 50px; /* Adjust as needed */    z-index: 1; }" }} />
-                </div></div>
     );
 }
 export default paiement;

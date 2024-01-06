@@ -34,7 +34,7 @@ import tampon from './tampon.png'; // Make sure the logo is in the same director
                   <th scope="col">الترتيب</th>
                   <th scope="col">الاعياد</th>
                   <th scope="col">تاريخ العطل</th>
-                  <th scope="col">عدد الأيام</th>
+                  <th scope="col" >عدد الأيام</th>
                 </tr>
               </thead>
               <tbody>

@@ -1,4 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+
+import attes from './attes.png';  
+import emploi from './emploi.png';  
+import releve from './relevedenotes.png';  
+import presentationfilliere from './presentationfilliere.png';  
+import vacances from './vacances.png';  
+import pai from './fichepaiem.png';  
 
 function liste_document() {
     return (
@@ -9,13 +16,13 @@ function liste_document() {
                         <div className="col-sm-6 col-md-6 col-lg-6">
                             <div className="food-card food-card--vertical">
                                 <div className="food-card_img">
-                                    <img src="attes.PNG" alt="" />
-                                    <a href="#!"><i className="fa fa-heart" /></a>
+                                    <img src={attes} alt="" />
+                                     
                                 </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
                                         <a href="#!" className="food-card_title">Attestation de Scolarite</a>
-                                        <a href="#!" className="food-card_author">Necessite Validation </a>
+                                        <a  className="food-card_author">Necessite Validation </a>
                                     </div>
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
@@ -28,8 +35,8 @@ function liste_document() {
                         <div className="col-sm-6 col-md-6 col-lg-6">
                             <div className="food-card food-card--vertical">
                                 <div className="food-card_img">
-                                    <img src="relevedenotes.PNG" alt="" />
-                                    <a href="#!"><i className="fa fa-heart" /></a>
+                                    <img src={releve} alt="" />
+                                     
                                 </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
@@ -49,8 +56,8 @@ function liste_document() {
                         <div className="col-sm-6 col-md-6 col-lg-6">
                             <div className="food-card food-card--vertical">
                                 <div className="food-card_img">
-                                    <img src="fichepaiem.png" alt="" />
-                                    <a href="#!"><i className="fa fa-heart" /></a>
+                                    <img src={pai} alt="" />
+                                     
                                 </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
@@ -66,8 +73,8 @@ function liste_document() {
                         <div className="col-sm-6 col-md-6 col-lg-6">
                             <div className="food-card food-card--vertical">
                                 <div className="food-card_img">
-                                    <img src="vacances.PNG" alt="" />
-                                    <a href="#!"><i className="fa fa-heart" /></a>
+                                    <img src={vacances} alt="" />
+                                     
                                 </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
@@ -85,8 +92,8 @@ function liste_document() {
                         <div className="col-sm-6 col-md-6 col-lg-6">
                             <div className="food-card food-card--vertical">
                                 <div className="food-card_img">
-                                    <img src="emploi.png" alt="" />
-                                    <a href="#!"><i className="fa fa-heart" /></a>
+                                    <img src={emploi} alt="" />
+                                     
                                 </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
@@ -102,8 +109,8 @@ function liste_document() {
                         <div className="col-sm-6 col-md-6 col-lg-6">
                             <div className="food-card food-card--vertical">
                                 <div className="food-card_img">
-                                    <img src="presentationfilliere.png" alt="" />
-                                    <a href="#!"><i className="fa fa-heart" /></a>
+                                    <img src={presentationfilliere} alt="" />
+                                     
                                 </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">

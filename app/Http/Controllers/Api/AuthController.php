@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Etudiant;
+use App\Models\Secretaire;
+use App\Models\Admin;
 
 
 use Illuminate\Support\Facades\Hash;
@@ -61,10 +63,43 @@ class AuthController extends Controller {
 
 
 
+    public function login_secretary(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $Secretaire = Secretaire::where('email', $credentials['email'])->first();
+
+        if (!$Secretaire || !Hash::check($credentials['password'], $Secretaire->password)) {
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+
+        $token = $Secretaire->createToken('auth_token')->plainTextToken;
+
+        return response()->json(['user' => $Secretaire, 'token' => $token]);
+    }
 
 
-
-
+    public function loginAdmin(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+    
+        $admin = Admin::where('email', $credentials['email'])->first();
+    
+        if (!$admin || !Hash::check($credentials['password'], $admin->password)) {
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+    
+        $token = $admin->createToken('auth_token')->plainTextToken;
+    
+        return response()->json(['user' => $admin, 'token' => $token]);
+    }
+    
 
 
 

@@ -55,5 +55,5 @@ Route::put('/etudiants/{id}', [EtudiantController::class, 'update']);
 
 
  Route::post('/login_etudiant', [AuthController::class, 'loginStudent']);
- // Route::post('/login_admin', [AuthController::class, 'loginAdmin']);
-// Route::post('/login_secretary', [AuthController::class, 'loginSecretary']);
+Route::post('/login_admin', [AuthController::class, 'loginAdmin']);
+Route::post('/login_secretary', [AuthController::class, 'login_secretary']);

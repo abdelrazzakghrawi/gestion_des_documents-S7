@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->string('Country', 100);
             $table->string('Region', 100);
-      
+            $table->string('role', 100)->default('secretaire');
             $table->timestamps();
         });
     }

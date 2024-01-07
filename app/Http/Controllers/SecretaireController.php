@@ -19,13 +19,13 @@ class SecretaireController extends Controller
             'datedenaissance' => 'nullable|date',
             'mobile_number' => 'required|max:255',
             'address_line1' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:etudiants',
+            'email' => 'required|email|max:255|unique:secretaires',
             'Country' => 'required|max:255',
             'Region' => 'required|max:255',
           
         ]);
         // Set the default password
-        $validatedData['password'] = Hash::make('Upf2024');    
+        $validatedData['password'] = Hash::make('SecUpf2024');    
         $secretaire = Secretaire::create($validatedData);
         return response()->json([
             'success' => true,

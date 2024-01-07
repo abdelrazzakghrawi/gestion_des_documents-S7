@@ -36,7 +36,7 @@ const Login = () => {
             if (selectedRole === 'Admin') {
                 apiEndpoint = 'http://localhost:8000/api/login_admin';
             } else if (selectedRole === 'Secretaire') {
-                apiEndpoint = 'http://localhost:8000/api/login_secretaire';
+                apiEndpoint = 'http://localhost:8000/api/login_secretary';
             }
         } else {
             // For students

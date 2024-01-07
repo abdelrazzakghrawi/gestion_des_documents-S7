@@ -31,7 +31,12 @@ import Vacance from './components/Document/vacance';
 
 
 
+
 import Unknow from './views/NotFound';
+
+
+
+import Login from './views/Login/Login';
 
 
  
@@ -65,6 +70,9 @@ function App() {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/Documents">Docs</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/login">Login</a>
             </li>
           </ul>
           
@@ -104,6 +112,7 @@ function App() {
           <Route path="/documents/presentation_filliere" element={<Presentation />} />
           <Route path="/documents/emploi" element={<Emploi />} />
           <Route path="/documents/vacances" element={<Vacance />} />
+          <Route path="/login" element={<Login />} />
 
 
           <Route path="*" element={<Unknow />} />

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Facades\Hash;
 return new class extends Migration
 {
     /**
@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('mobile_number', 100);
             $table->string('address_line1', 100); 
             $table->string('email', 100)->unique();
+            $table->string('password', 255)->default(Hash::make('SecUpf2024'));
+
             $table->string('Country', 100);
             $table->string('Region', 100);
       

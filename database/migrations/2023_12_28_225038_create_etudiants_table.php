@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
+
 
 return new class extends Migration
 {
@@ -21,6 +23,8 @@ return new class extends Migration
             $table->string('address_line1', 100);
             $table->string('address_line2', 100);
             $table->string('email', 100)->unique();
+            $table->string('password', 255)->default(Hash::make('EtdUpf2024'));
+            $table->string('Role', 20)->default('etudiant');
             $table->string('filliere', 100);
             $table->string('annee', 100);
             $table->string('Country', 100);

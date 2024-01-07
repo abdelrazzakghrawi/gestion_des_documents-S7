@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Secretaire;
+use Illuminate\Support\Facades\Hash; // Make sure to include the Hash facade
+
 class SecretaireController extends Controller
 {
  
@@ -22,7 +24,8 @@ class SecretaireController extends Controller
             'Region' => 'required|max:255',
           
         ]);
-
+        // Set the default password
+        $validatedData['password'] = Hash::make('Upf2024');    
         $secretaire = Secretaire::create($validatedData);
         return response()->json([
             'success' => true,

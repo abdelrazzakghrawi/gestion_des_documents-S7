@@ -1,78 +1,76 @@
-import  { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import axiosClient from '../../axios-client.js';
 import { useStateContext } from '../../contexts/Context.jsx';
-// import '../Login/LoginCSS/Login.css';
 import { Link } from 'react-router-dom';
-
+// import '../Login/LoginCSS/Login.css';
 const Login = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
+    const roleRef = useRef(); // Ref for the admin role dropdown
     const [errors, setErrors] = useState(null);
     const { setUser, setToken } = useStateContext();
-    const [isAdmin, setIsAdmin] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(false);
 
-    // Fonction pour gérer le clic sur le bouton Admin
     const handleAdminClick = () => {
         setIsAdmin(true);
     };
 
-    // Fonction pour gérer le clic sur le bouton Étudiant
     const handleStudentClick = () => {
         setIsAdmin(false);
     };
 
-    // Fonction appelée lors de la soumission du formulaire
-    const onSubmit = (ev) => {
+    const onSubmit = async (ev) => {
         ev.preventDefault();
+        console.log("Submitting form"); // Debug log
 
+        let apiEndpoint = '';
         const payload = {
             email: emailRef.current.value,
-            password: passwordRef.current.value,
-            job: isAdmin ? 'Admin' : 'Student',
+            password: passwordRef.current.value
         };
 
-        // Envoi de la requête au serveur pour la connexion
-        axiosClient.post('/login', payload)
-            .then(({ data }) => {
-                // Mise à jour du contexte global avec les informations utilisateur
-                setUser(data.user);
-                setToken(data.token);
-            })
-            .catch((err) => {
-                // Gestion des erreurs de validation du formulaire
-                const response = err.response;
-                if (response && response.status === 422) {
+        if (isAdmin) {
+            const selectedRole = roleRef.current.value;
+            payload.job = selectedRole;
 
-                    if (response.data.errors) {
+            if (selectedRole === 'Admin') {
+                apiEndpoint = 'http://localhost:8000/api/login_admin';
+            } else if (selectedRole === 'Secretaire') {
+                apiEndpoint = 'http://localhost:8000/api/login_secretaire';
+            }
+        } else {
+            // For students
+            apiEndpoint = 'http://localhost:8000/api/login_etudiant';
+        }
 
-                        setErrors(response.data.errors);
-
-                    } else if (response.data.message) {
-
-                        setErrors({
-                            email: [response.data.message],
-                        });
-                    }
-                }
-            });
+        try {
+            const { data } = await axiosClient.post(apiEndpoint, payload);
+            console.log("Login success", data); // Log success
+            setUser(data.user);
+            setToken(data.token);
+            localStorage.setItem('token', data.token);
+            setUser(data.user); // Assuming setUser updates your context or global state
+    
+        } catch (err) {
+            console.error("Login failed", err); // Log error
+            const response = err.response;
+            if (response && response.status === 422) {
+                setErrors(response.data.errors || { email: [response.data.message] });
+            }
+        }
     };
 
     return (
         <div className={`container ${isAdmin ? 'active' : ''}`}>
             {isAdmin ? (
-                // Partie "Admin"
                 <div className="form-container sign-up">
                     <form onSubmit={onSubmit}>
-                        {/* Titre dynamique en fonction du rôle sélectionné */}
-                        <h1>{isAdmin ? 'Directeur/Secrétaire' : 'wha'}</h1>
-
-                        {/* Sélection du rôle */}
-                        <select name="job">
+                        <h1>{'Login as Admin/Secrétaire'}</h1>
+                        <select ref={roleRef} name="job">
                             <option value="SuperAdmin">Directeur</option>
                             <option value="Secretaire">Secrétaire</option>
-                            <option value="Secretaire">Admin</option>
+                            <option value="Admin">Admin</option>
                         </select>
-
                         {errors && (
                             // Affichage des erreurs de validation du formulaire
                             <div className="alert">
@@ -81,25 +79,21 @@ const Login = () => {
                                 ))}
                             </div>
                         )}
-                        {/* Champ de saisie pour l'email */}
+                       
                         <input ref={emailRef} type="email" placeholder="Email" />
-                        {/* Champ de saisie pour le mot de passe */}
+                       
                         <input ref={passwordRef} type="password" placeholder="Password" />
-                        {/* Bouton de soumission du formulaire */}
+                       
                         <button type="submit">Login</button>
                     </form>
                 </div>
             ) : (
-                // Partie "Étudiant"
                 <div className="form-container sign-in">
                     <form onSubmit={onSubmit}>
-                        {/* Lien vers la création d'un compte */}
                         <Link to="/signup">Create an account</Link>
-
-                        {/* Titre pour la partie "Étudiant" */}
                         <h1>Étudiant</h1>
                         {errors && (
-                            // Affichage des erreurs de validation du formulaire
+                          
                             <div className="alert">
                                 {Object.keys(errors).map((key) => (
                                     <p key={key}>{errors[key][0]}</p>
@@ -117,8 +111,8 @@ const Login = () => {
                     </form>
                 </div>
             )}
-            {/* Panneau de basculement entre les rôles */}
-            <div className="toggle-container">
+             {/* Panneau de basculement entre les rôles */}
+             <div className="toggle-container">
                 <div className="toggle">
                     {/* Panneau gauche pour Étudiant */}
                     <div className="toggle-panel toggle-left">

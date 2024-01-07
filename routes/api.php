@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\SecretaireController;
-/*
+ 
+ /*
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
@@ -44,3 +45,15 @@ Route::put('/etudiants/{id}', [EtudiantController::class, 'update']);
  Route::apiResource('/secretaires', SecretaireController::class);
  Route::get('/secretaires/{id}', [SecretaireController::class, 'show']);
  Route::put('/secretaires/{id}', [SecretaireController::class, 'update']);
+
+
+
+
+
+
+
+
+
+ Route::post('/login_etudiant', [AuthController::class, 'loginStudent']);
+ // Route::post('/login_admin', [AuthController::class, 'loginAdmin']);
+// Route::post('/login_secretary', [AuthController::class, 'loginSecretary']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Etudiant;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash; // Make sure to include the Hash facade
 
 class EtudiantController extends Controller
 {
@@ -40,19 +41,20 @@ class EtudiantController extends Controller
             'Region' => 'required|max:255',
             'paiement_status' => 'required|integer'
         ]);
-
+    
+        // Set the default password
+        $validatedData['password'] = Hash::make('Upf2024');
+    
+        // Create the Etudiant with the validated data
         $etudiant = Etudiant::create($validatedData);
+    
         session()->flash('success', 'Etudiant added successfully.');
-
+    
         return response()->json([
             'success' => true,
-            'redirectPath' => '/etudiant/list' // e.g., '/etudiant/list'
+            'redirectPath' => '/etudiant/list'
         ]);
-
-       
-      
     }
-
 
 
 

@@ -164,7 +164,7 @@ d'informations
               <td> Big data</td>
               <td>PFE</td>
             </tr>
-     
+
           </tbody>
         </table>
       </div>

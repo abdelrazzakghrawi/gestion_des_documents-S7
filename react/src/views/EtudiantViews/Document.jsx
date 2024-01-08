@@ -1,79 +1,176 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
-import { faCertificate, faClock, faBook,faUserPlus, faDollarSign,  faMap  } from '@fortawesome/free-solid-svg-icons'; // Importez les icônes spécifiques dont vous avez besoin
+import attes from './DocImage/attes.png';
+import emploi from './DocImage/emploi.png';
+import releve from './DocImage/relevedenotes.png';
+import presentationfilliere from './DocImage/presentationfilliere.png';
+import vacances from './DocImage/vacances.png';
+import pai from './DocImage/fichepaiem.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { faCalendarCheck, faChalkboardTeacher, faBriefcase, faFileSignature, faShieldAlt, faCalendar } from '@fortawesome/free-solid-svg-icons';
-import { faClipboardList, faExchangeAlt, faFileAlt, faFootballBall } from '@fortawesome/free-solid-svg-icons';
 
-
-const GridSection = ({ route, title, content, icon }) => (
-    <Link to={route} style={{ textDecoration: 'none', color: 'inherit' }}>
-        <div style={{ backgroundColor: '#f0f0f0', padding: '100px', borderRadius: '8px', textAlign: 'center' }}>
-            <FontAwesomeIcon icon={icon} size="2x" style={{ marginBottom: '10px' }} />
-            <h3>{title}</h3>
-            <p>{content}</p>
-        </div>
-    </Link>
-);
-
-GridSection.propTypes = {
-    route: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    icon: PropTypes.object.isRequired,
-};
 
 export default function Document() {
-    const [searchTerm, setSearchTerm] = useState('');
-    const gridData = [
-        { route: "/documents/attestation-scolaire", title: "Attestation Scolaire", content: "Obtenez votre attestation scolaire ici.", icon: faCertificate },
-        { route: "/documents/emploi-du-temps", title: "Emploi du Temps", content: "Consultez les horaires des cours et des activités.", icon: faClock },
-        { route: "/documents/notes-et-resultats", title: "Notes et Résultats", content: "Accédez à vos notes et résultats scolaires.", icon: faBook },
-        { route: "/documents/inscription", title: "Inscription", content: "Formulaire d'inscription pour les nouveaux étudiants.", icon: faUserPlus },
-        { route: "/documents/calendrier-examens", title: "Calendrier des Examens", content: "Consultez le calendrier des examens à venir.", icon: faCalendarCheck },
-        { route: "/documents/attestation-presence", title: "Attestation de Présence", content: "Obtenez une attestation de présence aux cours.", icon: faClipboardList },
-        { route: "/documents/demande-transfert", title: "Demande de Transfert", content: "Formulaires pour demander un transfert d'école.", icon: faExchangeAlt },
-        { route: "/documents/formulaire-dispense", title: "Formulaire de Dispense", content: "Demandez une dispense pour certaines activités ou cours.", icon: faFileAlt },
-        { route: "/documents/planning-activites-extrascolaires", title: "Planning des Activités Extrascolaires", content: "Découvrez les activités extrascolaires et leur planning.", icon: faFootballBall },
-        { route: "/documents/demande-de-bourse", title: "Demande de Bourse", content: "Formulaires et informations pour les demandes de bourse.", icon: faDollarSign },
-        { route: "/documents/plan-ecole", title: "Plan de l'École", content: "Plan et guide de l'école pour les étudiants et visiteurs.", icon: faMap },
-        { route: "/documents/informations-cours", title: "Informations sur les Cours", content: "Détails et matériel pour vos cours.", icon: faChalkboardTeacher },
-        { route: "/documents/rapports-stage", title: "Rapports de Stage", content: "Guides et modèles pour les rapports de stage.", icon: faBriefcase },
-        { route: "/documents/procedures-administratives", title: "Procédures Administratives", content: "Instructions pour les démarches administratives.", icon: faFileSignature },
-        { route: "/documents/regles-securite", title: "Règles de Sécurité", content: "Règles et consignes de sécurité de l'établissement.", icon: faShieldAlt },
-        { route: "/documents/programme-evenements", title: "Programme d'Événements", content: "Calendrier des événements et activités scolaires.", icon: faCalendar },
-
-
-
-
-    ];
-    const filteredData = gridData.filter((data) => {
-        // Filtrer les données en fonction de la valeur de recherche
-        const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        return (
-            data.title.toLowerCase().includes(lowerCaseSearchTerm) ||
-            data.content.toLowerCase().includes(lowerCaseSearchTerm)
-        );
-    });
-
     return (
         <div>
-            <h2>Document</h2>
-            <div style={{ marginBottom: '16px' }}>
-                <input
-                    type="text"
-                    placeholder="Rechercher..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
-    {filteredData.map((data, index) => (
-        <GridSection key={index} {...data} />
-    ))}
-</div>
+             <section className="main-contentt">
+                <div className="containerr">
+                    <div className="row">
+                        {/* Carte Attestation de Scolarité */}
+                        <div className="col-sm-6 col-md-4 col-lg-4">
+                            <div className="food-card food-card--vertical">
+                                <div className="food-card_img">
+                                    <img src={attes} alt="Attestation de Scolarité" />
+                                </div>
+                                <div className="food-card_content">
+                                    <div className="food-card_title-section">
+                                        <span className="food-card_title">Attestation de Scolarite</span> <br/>
+                                        <span className="food-card_author">Necessite Validation </span>
+                                    </div>
+                                    <div className="food-card_bottom-section">
+                                        <hr /><br />
+                                        <a target="_blank" className="btn btn-primary">Demander</a>
+                                        <a target="_blank" href='/documents/attestation' className="btn btn-secondary">Imprimer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-sm-6 col-md-4 col-lg-4">
+                            <div className="food-card food-card--vertical">
+                                <div className="food-card_img">
+                                    <img src={releve} alt="Relevé de Notes" />
+                                </div>
+                                <div className="food-card_content">
+                                    <div className="food-card_title-section">
+                                        <span className="food-card_title">Relevé de Notes</span> <br/>
+                                        <span className="food-card_author">Necessite Validation </span>
+                                    </div>
+                                    <div className="food-card_bottom-section">
+                                        <hr /><br />
+                                        <a target="_blank" className="btn btn-primary">Demander</a>
+                                        <a target="_blank" href='/documents/releve' className="btn btn-secondary">Imprimer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-sm-6 col-md-4 col-lg-4">
+                            <div className="food-card food-card--vertical">
+                                <div className="food-card_img">
+                                    <img src={pai} alt="Fiche de paiement" />
+                                </div>
+                                <div className="food-card_content">
+                                    <div className="food-card_title-section">
+                                        <span className="food-card_title">Fiche de paiement</span>
+                                    </div>
+                                    <div className="food-card_bottom-section">
+                                        <hr /><br />
+                                        <a target="_blank" href='/documents/paiement' className="btn btn-secondary">Imprimer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-sm-6 col-md-4 col-lg-4">
+                            <div className="food-card food-card--vertical">
+                                <div className="food-card_img">
+                                    <img src={vacances} alt="Liste des Vacances" />
+                                </div>
+                                <div className="food-card_content">
+                                    <div className="food-card_title-section">
+                                        <span className="food-card_title">Liste des Vacances</span>
+                                    </div>
+                                    <div className="food-card_bottom-section">
+                                        <hr /><br />
+                                        <a target="_blank" href='/documents/vacances' className="btn btn-secondary">Imprimer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-sm-6 col-md-4 col-lg-4">
+                            <div className="food-card food-card--vertical">
+                                <div className="food-card_img">
+                                    <img src={emploi} alt="Emploi de temps" />
+                                </div>
+                                <div className="food-card_content">
+                                    <div className="food-card_title-section">
+                                        <span className="food-card_title">Emploi de temps</span>
+                                    </div>
+                                    <div className="food-card_bottom-section">
+                                        <hr /><br />
+                                        <a target="_blank" href='/documents/emploi' className="btn btn-secondary">Imprimer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-sm-6 col-md-4 col-lg-4">
+                            <div className="food-card food-card--vertical">
+                                <div className="food-card_img">
+                                    <img src={presentationfilliere} alt="Presentation de la fillière" />
+                                </div>
+                                <div className="food-card_content">
+                                    <div className="food-card_title-section">
+                                        <span className="food-card_title">Presentation de la fillière</span>
+                                    </div>
+                                    <div className="food-card_bottom-section">
+                                        <hr /><br />
+                                        <a target="_blank" className="btn btn-secondary">Imprimer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <style dangerouslySetInnerHTML={{ __html: `
+                body {
+                    background: #f9f9f9;
+                    font-family: "roboto", sans-serif;
+                }
+                .main-content {
+                    padding-top: 100px;
+                    padding-bottom: 100px;
+                }
+                a {
+                    text-decoration: none;
+                }
+                .food-card {
+                    background: #fff;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    margin-bottom: 30px;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+                    transition: 0.1s;
+                }
+                .food-card .food-card_content {
+                    padding: 15px;
+                }
+                .food-card .food-card_content .food-card_title-section {
+                    height: 100px;
+                    overflow: hidden;
+                }
+                .food-card .food-card_content .food-card_title-section .food-card_title {
+                    font-size: 24px;
+                    color: #333;
+                    font-weight: 500;
+                    line-height: 1.3;
+                    margin-bottom: 8px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .food-card .food-card_content .food-card_bottom-section .space-between {
+                    display: flex;
+                    justify-content: space-between;
+                }
+                @media (min-width: 992px) {
+                    .food-card--vertical {
+                        display: flex;
+                        position: relative;
+                    }
+                    .food-card--vertical .food-card_img img {
+                        width: 200px;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            ` }} />
+
         </div>
     );
 }

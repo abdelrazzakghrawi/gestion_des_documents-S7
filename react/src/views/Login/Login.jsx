@@ -45,7 +45,7 @@ const Login = () => {
                 navigate('/secretaire/dashboardSecretaire');
                 break;
             case 'student':
-                navigate('/dashboard');
+                navigate('/Document');
                 break;
             case 'admin':
                 navigate('/admin/dashboardAdmin'); // Remplacez par la route de dashboard de l'admin

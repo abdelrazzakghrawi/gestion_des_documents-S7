@@ -1,32 +1,30 @@
-import { Outlet, Navigate,  } from "react-router-dom";
-import { useStateContext } from "../contexts/Context";
-// SecretaireLayout.jsx
+import Navbar from '../views/AdminViews/Navbar';
+import { Outlet } from "react-router-dom";
 
 const AdminLayout = () => {
-    const { role, token } = useStateContext();
-
-    // Si l'utilisateur n'est pas connecté, le rediriger vers la page de connexion
-    if (!token) {
-        return <Navigate to="/login" />;
-    }
-
-    if (role !== 'admin') {
-        return <Navigate to="/unauthorized" />;
-    }
+    // ... your existing logic
 
     return (
         <div className="admin-layout">
-            {/* Votre contenu spécifique au layout de la secrétaire */}
-            <nav>
-                {/* Vos liens de navigation */}
-            </nav>
-            <main>
-                {/* Outlet rendra les composants enfants spécifiés dans les routes */}
+            <Navbar />
+
+            {/* Sidebar (if needed) */}
+            <aside className="admin-sidebar">
+                {/* Sidebar content like links, menus, or information displays */}
+            </aside>
+
+            {/* Main Content Area */}
+            <main className="admin-content">
+                {/* Outlet will render the specific content based on the route */}
                 <Outlet />
             </main>
+
+            {/* Footer (if needed) */}
+            <footer className="admin-footer">
+                {/* Footer content */}
+            </footer>
         </div>
     );
 };
 
 export default AdminLayout;
-

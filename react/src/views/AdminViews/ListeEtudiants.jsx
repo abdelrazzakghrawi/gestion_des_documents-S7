@@ -23,6 +23,8 @@ const EtudiantList = () => {
     if (window.confirm('Are you sure you want to delete this student?')) {
       try {
         await axios.delete(`http://localhost:8000/api/etudiants/${id}`);
+        navigate('navigate'); // Utiliser navigate ici
+
 
         console.log('Student successfully deleted');
         window.location.reload();

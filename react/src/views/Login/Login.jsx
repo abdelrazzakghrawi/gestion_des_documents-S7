@@ -67,19 +67,19 @@ const Login = () => {
 };
 
     return (
-        <div className={`container ${isAdmin ? 'active' : ''}`}>
+        <div className={`containers ${isAdmin ? 'active' : ''}`}>
             {isAdmin ? (
                 // Partie "Admin"
                 <div className="form-container sign-up">
                     <form onSubmit={onSubmit}>
                         {/* Titre dynamique en fonction du rôle sélectionné */}
-                        <h1>{isAdmin ? 'Directeur/Secrétaire' : 'wha'}</h1>
+                        <h2>{isAdmin ? 'Directeur/Secrétaire' : 'wha'}</h2>
 
                         {/* Sélection du rôle */}
                         <select name="job">
-                            <option value="SuperAdmin">Directeur</option>
+                    
                             <option value="Secretaire">Secrétaire</option>
-                            <option value="Secretaire">Admin</option>
+                            <option value="Admin">Admin</option>
                         </select>
 
                         {errors && (

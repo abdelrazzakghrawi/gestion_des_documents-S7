@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
+
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 const EtudiantList = () => {
@@ -22,7 +23,7 @@ const EtudiantList = () => {
     if (window.confirm('Are you sure you want to delete this student?')) {
       try {
         await axios.delete(`http://localhost:8000/api/etudiants/${id}`);
-  
+
         console.log('Student successfully deleted');
         window.location.reload();
         // Optionally, refresh the list or navigate away
@@ -34,7 +35,7 @@ const EtudiantList = () => {
 
 
 
-  
+
   return (
 
     <div>

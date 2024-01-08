@@ -1,27 +1,53 @@
-import Navbar from '../views/AdminViews/Navbar';
-import { Outlet } from "react-router-dom";
+import  { useEffect } from 'react';
+import { Navigate, Outlet } from "react-router-dom";
+import { useStateContext } from "../contexts/Context";
+import Navbar from '../views/AdminViews/Navbar'; // Assurez-vous que le chemin est correct
+import axiosClient from "../axios-client.js";
 
 const AdminLayout = () => {
-    // ... your existing logic
+    const { user, token,  setUser, setToken } = useStateContext();
+
+    useEffect(() => {
+        // Chargement des informations utilisateur au montage du composant
+        if (!user) {
+            axiosClient.get('/user')
+                .then(({ data }) => {
+                    setUser(data);
+                });
+        }
+    }, [user, setUser]);
+
+    const onLogout = (ev) => {
+        ev.preventDefault();
+        axiosClient.post('/logout')
+            .then(() => {
+                setUser({});
+                setToken(null);
+            });
+    };
+
+    // Rediriger vers la page de connexion si aucun token
+    if (!token) {
+        return <Navigate to="/login" />;
+    }
+
+    // Rediriger si l'utilisateur n'est pas un admin
+
 
     return (
         <div className="admin-layout">
-            <Navbar />
+            <Navbar userName={user?.name} onLogout={onLogout} />
 
-            {/* Sidebar (if needed) */}
             <aside className="admin-sidebar">
-                {/* Sidebar content like links, menus, or information displays */}
+                {/* Contenu de la barre latérale pour l'admin */}
             </aside>
 
-            {/* Main Content Area */}
-            <main className="admin-content">
-                {/* Outlet will render the specific content based on the route */}
+        <main className="admin-content">
                 <Outlet />
-            </main>
-
-            {/* Footer (if needed) */}
-            <footer className="admin-footer">
-                {/* Footer content */}
+                
+        </main>
+        <footer className="admin-footer">
+                {/* Contenu du pied de page */}
             </footer>
         </div>
     );

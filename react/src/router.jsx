@@ -12,6 +12,7 @@ import SecretaireLayout from "./composants/SecretaireLayout.jsx";
 import AdminLayout from "./composants/AdminLayout.jsx";
 import DashboardSecretaire from "./views/SecretaryViews/DashboardSecretaire.jsx";
 import DashboardAdmin from "./views/AdminViews/dashboardAdmin.jsx";
+import ListeEtudiants from "./views/AdminViews/ListeEtudiants.jsx";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "dashboardAdmin",
         element: <DashboardAdmin />
+      },
+      {
+        path: "ListeEtudiants",
+        element: <ListeEtudiants />
       },
       // Other routes for the directeur
     ]

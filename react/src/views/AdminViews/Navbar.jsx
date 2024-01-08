@@ -1,4 +1,7 @@
-const Navbar = () => {
+import { Link } from 'react-router-dom';
+
+// eslint-disable-next-line react/prop-types
+const Navbar = ({ userName , onLogout  }) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -12,7 +15,7 @@ const Navbar = () => {
                             <a className="nav-link active" aria-current="page" href="/home">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/etudiant/list">Etudiants</a>
+                        <Link to="/admin/ListeEtudiants" className="nav-link">Etudiants</Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/Secretaire/list">Secretaire</a>
@@ -20,8 +23,11 @@ const Navbar = () => {
                         <li className="nav-item">
                             <a className="nav-link" href="/Documents">Docs</a>
                         </li>
-
                     </ul>
+                    <div className="navbar-text">
+                        Bienvenue, {userName}
+                        <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
+                    </div>
                 </div>
             </div>
         </nav>

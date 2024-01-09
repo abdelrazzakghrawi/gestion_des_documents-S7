@@ -29,7 +29,7 @@ class SecretaireController extends Controller
         $secretaire = Secretaire::create($validatedData);
         return response()->json([
             'success' => true,
-            'redirectPath' => '/Secretaire/list' 
+            'redirectPath' => '/admin/ListeSecretaires' 
         ]);
       
     }

@@ -1,10 +1,10 @@
-import  { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-const AjouterSec = () => {
+const AjouterEtd = () => {
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -12,13 +12,9 @@ const AjouterSec = () => {
     datedenaissance: '',
     mobile_number: '',
     address_line1: '',
-    address_line2: '',
     email: '',
-    filliere: '',
-    annee: '',
     Country: '',
     Region: '',
-    paiement_status: 13
   });
 
   const [formErrors, setFormErrors] = useState({});
@@ -34,18 +30,19 @@ const AjouterSec = () => {
     e.preventDefault();
     const validationErrors = validate(formData);
     setFormErrors(validationErrors);
-
+  
     if (Object.keys(validationErrors).length === 0) {
       try {
         const response = await axios.post('http://localhost:8000/api/add_secretaires', formData);
-
         console.log('Response:', response.data);
-
-         if (response.data.success) {
+  
+        // Check if the response indicates success and contains a redirect path
+        if (response.data.success) {
           // Redirect to the path provided by the backend
           navigate(response.data.redirectPath);
         } else {
-           console.error("Submission was not successful.");
+          // Handle the case where the response doesn't indicate success
+          console.error("Submission was not successful.");
         }
       } catch (error) {
         console.error("Error during submission:", error.response);
@@ -78,22 +75,13 @@ const AjouterSec = () => {
     if (!values.address_line1) {
       errors.name = "Please fill in the address line 1 field.";
     }
-    if (!values.address_line2) {
-      errors.name = "Please fill in the address line 2 field.";
-    }
+   
 
     if (!values.email) {
       errors.name = "Please fill in the email field.";
     }
 
-    if (!values.filliere) {
-      errors.name = "Please select a filliere.";
-    }
-
-    if (!values.annee) {
-      errors.name = "Please select a year.";
-    }
-
+   
     if (!values.Country) {
       errors.name = "Please select a country.";
     }
@@ -103,15 +91,10 @@ const AjouterSec = () => {
     }
 
 
-
-     return errors;
-
-
-  };
-
-
-
-  return (
+ 
+    return errors;
+  }; 
+    return (
     <div>
       <main className="page payment-page">
         <section className="payment-form dark">
@@ -121,66 +104,32 @@ const AjouterSec = () => {
 
             <form onSubmit={handleSubmit}>
 
-              {formErrors.name && (
-                <div className="alert alert-danger" role="alert">
-                  {formErrors.name}
-                </div>
-              )}
-
+              {formErrors.name && <p className="error">{formErrors.name}</p>}
 
 
               <div className="row mt-2">
                 <div className="col-md-6"><label className="labels">Nom</label>
-                  <input type="text" className="form-control" placeholder="first name" value={formData.name} onChange={handleChange} id="name" name="name" />
+                  <input type="text" className="form-control" placeholder="first name" value={formData.name} onChange={handleChange} id="name" name="name"  />
                 </div>
                 <div className="col-md-6"><label className="labels">Surname</label>
-                  <input type="text" className="form-control" name="surname" onChange={handleChange} id="surname" value={formData.surname} placeholder="surname" />
+                  <input type="text" className="form-control" name="surname" onChange={handleChange} id="surname" value={formData.surname} required placeholder="surname" />
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-md-12"><label className="labels">Cin</label>
-                  <input type="text" className="form-control" onChange={handleChange} id="cin" name="cin" value={formData.cin} placeholder="Cin" />
+                  <input type="text" className="form-control" onChange={handleChange} id="cin" name="cin" required value={formData.cin} placeholder="Cin" />
                 </div>
                 <div className="col-md-12"><label className="labels">Date de Naissance</label>
                   <input type="date" className="form-control" onChange={handleChange} id="datedenaissance" value={formData.datedenaissance} name="datedenaissance" />
                 </div>
                 <div className="col-md-12"><label className="labels">Mobile Number</label>
-                  <input type="text" className="form-control" onChange={handleChange} id="mobile_number" name="mobile_number" value={formData.mobile_number} placeholder="enter phone number" />
+                  <input type="text" className="form-control" onChange={handleChange} id="mobile_number" name="mobile_number" required value={formData.mobile_number} placeholder="enter phone number" />
                 </div>
                 <div className="col-md-12"><label className="labels">Address Line 1</label>
-                  <input type="text" className="form-control" onChange={handleChange} id="address_line1" name="address_line1" value={formData.address_line1} placeholder="enter address line 1" />
-                </div>
-                <div className="col-md-12"><label className="labels">Address Line 2</label>
-                  <input type="text" className="form-control" onChange={handleChange} id="address_line2" name="address_line2" value={formData.address_line2} placeholder="enter address line 2" />
+                  <input type="text" className="form-control" onChange={handleChange} id="address_line1" name="address_line1" required value={formData.address_line1} placeholder="enter address line 1" />
                 </div>
                 <div className="col-md-12"><label className="labels">Email</label>
-                  <input type="email" className="form-control" onChange={handleChange} id="email" name="email" value={formData.email} placeholder="enter email" />
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col-md-6">
-                  <label className="labels">filliere</label>
-                  <select className="form-control" onChange={handleChange} id="filliere" value={formData.filliere} name="filliere">
-                    <option value="">Select filliere</option>
-                    <option value="Génie informatique">Génie informatique</option>
-                    <option value="Génie Civil">Génie Civil</option>
-                    <option value="Génie des Energies Renouvelables et Systèmes Energétiques">Génie des Energies Renouvelables et Systèmes Energétiques</option>
-                    <option value="Système d’Information et Transformation Digitale">Système d’Information et Transformation Digitale</option>
-                    <option value="Génie des Systèmes Embarqués">Génie des Systèmes Embarqués</option>
-                    <option value="Design et Architecture d’Intérieur">Design et Architecture d’Intérieur</option>
-                    <option value="Urbanisme et Aménagement">Urbanisme et Aménagement</option>
-                  </select>
-                </div>
-                <div className="col-md-6">
-                  <label className="labels">annee</label>
-                  <select className="form-control" onChange={handleChange} value={formData.annee} id="annee" name="annee">
-                    <option value="">Select the Year</option>
-                    <option value="1">1ère année</option>
-                    <option value="2">2ème année</option>
-                    <option value="3">3ème année</option>
-                    <option value="4">4ème année</option>
-                    <option value="5">5ème année</option>
-                  </select>
+                  <input type="email" className="form-control" onChange={handleChange} id="email" name="email" required value={formData.email} placeholder="enter email" />
                 </div>
               </div>
               <div className="row mt-3">
@@ -247,7 +196,7 @@ const AjouterSec = () => {
                   </select>
                 </div>
                 <div className="col-md-6"><label className="labels">Region</label>
-                  <input type="text" className="form-control" onChange={handleChange} id="Region" name="Region" value={formData.Region} placeholder="state" />
+                  <input type="text" className="form-control" onChange={handleChange} id="Region" name="Region" required value={formData.Region} placeholder="state" />
                 </div>
               </div>
 
@@ -262,7 +211,7 @@ const AjouterSec = () => {
           </div>
         </section>
       </main>
-      <style dangerouslySetInnerHTML={{ __html: "    .payment-form{padding-bottom: 50px;font-family: 'Montserrat', sans-serif;}.payment-form.dark{background-color: #f6f6f6;}.payment-form .content{box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);background-color: white;}.payment-form .block-heading{    padding-top: 50px;    margin-bottom: 40px;    text-align: center;}.payment-form .block-heading p{text-align: center;max-width: 420px;margin: auto;opacity:0.7;}.payment-form.dark .block-heading p{opacity:0.8;}.payment-form .block-heading h1,.payment-form .block-heading h2,.payment-form .block-heading h3 {margin-bottom:1.2rem;color: #3b99e0;}.payment-form form{border-top: 2px solid #5ea4f3;box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);background-color: #ffffff;padding: 20px;max-width: 600px;margin: auto;}.payment-form .title{font-size: 1em;border-bottom: 1px solid rgba(0,0,0,0.1);margin-bottom: 0.8em;font-weight: 600;padding-bottom: 8px;}.payment-form .products{background-color: #f7fbff;    padding: 25px;}.payment-form .products .item{margin-bottom:1em;}.payment-form .products .item-name{font-weight:600;font-size: 0.9em;}.payment-form .products .item-description{font-size:0.8em;opacity:0.6;}.payment-form .products .item p{margin-bottom:0.2em;}.payment-form .products .price{float: right;font-weight: 600;font-size: 0.9em;}.payment-form .products .total{border-top: 1px solid rgba(0, 0, 0, 0.1);margin-top: 10px;padding-top: 19px;font-weight: 600;line-height: 1;}.payment-form .card-details{padding: 25px 25px 15px;}.payment-form .card-details label{font-size: 12px;font-weight: 600;margin-bottom: 15px;color: #79818a;text-transform: uppercase;}.payment-form .card-details button{margin-top: 0.6em;padding:12px 0;font-weight: 600;}.payment-form .date-separator{ margin-left: 10px;    margin-right: 10px;    margin-top: 5px;}@media (min-width: 576px) {.payment-form .title {font-size: 1.2em; }.payment-form .products {padding: 40px;   }.payment-form .products .item-name {font-size: 1em; }.payment-form .products .price {    font-size: 1em; }  .payment-form .card-details {    padding: 40px 40px 30px;     }  .payment-form .card-details button {    margin-top: 2em;     } }" }} />
+<style dangerouslySetInnerHTML={{__html: "    .payment-form{padding-bottom: 50px;font-family: 'Montserrat', sans-serif;}.payment-form.dark{background-color: #f6f6f6;}.payment-form .content{box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);background-color: white;}.payment-form .block-heading{    padding-top: 50px;    margin-bottom: 40px;    text-align: center;}.payment-form .block-heading p{text-align: center;max-width: 420px;margin: auto;opacity:0.7;}.payment-form.dark .block-heading p{opacity:0.8;}.payment-form .block-heading h1,.payment-form .block-heading h2,.payment-form .block-heading h3 {margin-bottom:1.2rem;color: #3b99e0;}.payment-form form{border-top: 2px solid #5ea4f3;box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);background-color: #ffffff;padding: 20px;max-width: 600px;margin: auto;}.payment-form .title{font-size: 1em;border-bottom: 1px solid rgba(0,0,0,0.1);margin-bottom: 0.8em;font-weight: 600;padding-bottom: 8px;}.payment-form .products{background-color: #f7fbff;    padding: 25px;}.payment-form .products .item{margin-bottom:1em;}.payment-form .products .item-name{font-weight:600;font-size: 0.9em;}.payment-form .products .item-description{font-size:0.8em;opacity:0.6;}.payment-form .products .item p{margin-bottom:0.2em;}.payment-form .products .price{float: right;font-weight: 600;font-size: 0.9em;}.payment-form .products .total{border-top: 1px solid rgba(0, 0, 0, 0.1);margin-top: 10px;padding-top: 19px;font-weight: 600;line-height: 1;}.payment-form .card-details{padding: 25px 25px 15px;}.payment-form .card-details label{font-size: 12px;font-weight: 600;margin-bottom: 15px;color: #79818a;text-transform: uppercase;}.payment-form .card-details button{margin-top: 0.6em;padding:12px 0;font-weight: 600;}.payment-form .date-separator{ margin-left: 10px;    margin-right: 10px;    margin-top: 5px;}@media (min-width: 576px) {.payment-form .title {font-size: 1.2em; }.payment-form .products {padding: 40px;   }.payment-form .products .item-name {font-size: 1em; }.payment-form .products .price {    font-size: 1em; }  .payment-form .card-details {    padding: 40px 40px 30px;     }  .payment-form .card-details button {    margin-top: 2em;     } }" }} />
 
     </div>
 
@@ -273,4 +222,4 @@ const AjouterSec = () => {
 };
 
 
-export default AjouterSec;
+export default AjouterEtd;

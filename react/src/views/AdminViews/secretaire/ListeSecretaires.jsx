@@ -9,7 +9,7 @@ const ListeSecretaires = () => {
   useEffect(() => {
     const fetchSecretaires = async () => {
       try {
-        const result = await axios('    http://localhost:8000/api/secretaires');
+        const result = await axios('http://localhost:8000/api/secretaires');
         setSecretaires(result.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des secretaires:", error);
@@ -27,7 +27,7 @@ const ListeSecretaires = () => {
     if (window.confirm('Are you sure you want to delete this secretaire?')) {
       try {
         await axios.delete(`http://localhost:8000/api/secretaires/${id}`);
-        navigate('/Secretaire/list');
+        navigate('/admin/ListeSecretaires');
         console.log('Secrétaire successfully deleted');
       } catch (error) {
         console.error("Error during deletion:", error.response);
@@ -70,10 +70,10 @@ const ListeSecretaires = () => {
               <td>{secretaire.email}</td>
               <td>{secretaire.address_line1}</td>
               <td className="project-actions text-right">
-                <a className="btn btn-primary btn-sm" href={`/secretaire/${secretaire.id}`}>
+                <a className="btn btn-primary btn-sm" href={`ViewSecretaires/${secretaire.id}`}>
                   <i className="fas fa-folder"></i> View
                 </a>
-                <a className="btn btn-info btn-sm" href={`/secretaire/edit/${secretaire.id}`}>
+                <a className="btn btn-info btn-sm" href={`ModifierSec/${secretaire.id}`}>
                   <i className="fas fa-pencil-alt"></i> Edit
                 </a>
                 <button className="btn btn-danger btn-sm" onClick={() => handleDelete(secretaire.id)}>

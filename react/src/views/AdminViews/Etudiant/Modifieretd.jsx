@@ -46,7 +46,8 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     try {
         await axios.put(`http://localhost:8000/api/etudiants/${id}`, etudiant);
-        navigate('/etudiant/list');
+        navigate('/admin/ListeEtudiants');
+ 
     } catch (error) {
         if (error.response && error.response.status === 422) {
             // Handle validation errors

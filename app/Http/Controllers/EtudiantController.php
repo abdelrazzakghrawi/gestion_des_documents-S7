@@ -52,7 +52,7 @@ class EtudiantController extends Controller
     
         return response()->json([
             'success' => true,
-            'redirectPath' => '/etudiant/list'
+            'redirectPath' => '/admin/ListeEtudiants'
         ]);
     }
 

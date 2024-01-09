@@ -57,7 +57,7 @@ const EtudiantList = () => {
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossOrigin="anonymous" />
 
       <div className="col-12 mb-3">
-        <h2>Liste des Secrétaires</h2>
+        <h2>Liste des Etudiants</h2>
         <button className="btn btn-primary btn-sm" onClick={handleAddStudentClick}>
           <i className="fas fa-plus"></i> Ajouter Etudiant
         </button>

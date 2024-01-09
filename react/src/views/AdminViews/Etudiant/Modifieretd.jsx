@@ -211,7 +211,7 @@ const handleSubmit = async (e) => {
 
               <div className="mt-5 text-center">
                 <button className="btn btn-primary profile-button" type="submit">
-                  Ajouter
+                  Modifier
                 </button>
               </div>
             </form>

@@ -43,7 +43,7 @@ const ViewSecretaires = () => {
                     <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
                      </div> */}
                       <h6 className="f-w-600">{secretaire.name} {secretaire.surname}</h6>
-                      <p>{secretaire.name}eme annee{secretaire.name}</p>
+                    
                       <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16" />
                     </div>
                   </div>

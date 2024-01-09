@@ -1,100 +1,62 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-const AjouterEtd = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    surname: '',
-    cin: '',
-    datedenaissance: '',
-    mobile_number: '',
-    address_line1: '',
-    email: '',
-    Country: '',
-    Region: '',
-  });
 
-  const [formErrors, setFormErrors] = useState({});
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const navigate = useNavigate();
+const ModifierSec = () => {
+  const [secretaire, setSecretaires] = useState({
+      name: '',
+      surname: '',
+      cin: '',
+      datedenaissance: '',
+      mobile_number: '',
+      address_line1: '',
+      email: '',
+      Country: '',
+      Region: '',
+    });
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validate(formData);
-    setFormErrors(validationErrors);
-  
-    if (Object.keys(validationErrors).length === 0) {
-      try {
-        const response = await axios.post('http://localhost:8000/api/add_secretaires', formData);
-        console.log('Response:', response.data);
-  
-        // Check if the response indicates success and contains a redirect path
-        if (response.data.success) {
-          // Redirect to the path provided by the backend
-          navigate(response.data.redirectPath);
-        } else {
-          // Handle the case where the response doesn't indicate success
-          console.error("Submission was not successful.");
+    const [formErrors, setFormErrors] = useState({});
+    const navigate = useNavigate();
+    const { id } = useParams();
+
+    useEffect(() => {
+      const fetchEtudiantDetails = async () => {
+        try {
+          const result = await axios(`http://localhost:8000/api/secretaires/${id}`);
+          setSecretaires(result.data);
+        } catch (error) {
+          console.error("Error fetching student details:", error);
         }
-      } catch (error) {
-        console.error("Error during submission:", error.response);
-      }
+      };
+
+      fetchEtudiantDetails();
+    }, [id]);
+
+    const handleChange = (e) => {
+      setSecretaires({ ...secretaire, [e.target.name]: e.target.value });
+    };
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        await axios.put(`http://localhost:8000/api/secretaires/${id}`, secretaire);
+        navigate('/secretaire/list');
+    } catch (error) {
+        if (error.response && error.response.status === 422) {
+            // Handle validation errors
+            setFormErrors(error.response.data.errors);
+        } else {
+            console.error("Error updating secretaires:", error);
+        }
     }
-  };
-  const validate = (values) => {
-    let errors = {};
+};
 
-    if (!values.name) {
-      errors.name = "Please fill in the name field.";
+
+    if (!secretaire) {
+      return <div>Loading...</div>;
     }
-
-    if (!values.surname) {
-      errors.name = "Please fill in the surname field.";
-    }
-
-    if (!values.cin) {
-      errors.name = "Please fill in the Cin field.";
-    }
-
-    if (!values.datedenaissance) {
-      errors.name = "Please select a date of birth.";
-    }
-
-    if (!values.mobile_number) {
-      errors.name = "Please fill in the mobile number field.";
-    }
-
-    if (!values.address_line1) {
-      errors.name = "Please fill in the address line 1 field.";
-    }
-   
-
-    if (!values.email) {
-      errors.name = "Please fill in the email field.";
-    }
-
-   
-    if (!values.Country) {
-      errors.name = "Please select a country.";
-    }
-
-    if (!values.Region) {
-      errors.name = "Please fill in the region field.";
-    }
-
-
- 
-    return errors;
-  }; 
-    return (
+  return (
     <div>
       <main className="page payment-page">
         <section className="payment-form dark">
@@ -109,33 +71,40 @@ const AjouterEtd = () => {
 
               <div className="row mt-2">
                 <div className="col-md-6"><label className="labels">Nom</label>
-                  <input type="text" className="form-control" placeholder="first name" value={formData.name} onChange={handleChange} id="name" name="name"  />
+                  <input type="text" className="form-control" placeholder="first name" value={secretaire.name} onChange={handleChange} id="name" name="name" required />
                 </div>
                 <div className="col-md-6"><label className="labels">Surname</label>
-                  <input type="text" className="form-control" name="surname" onChange={handleChange} id="surname" value={formData.surname} required placeholder="surname" />
+                  <input type="text" className="form-control" name="surname" onChange={handleChange} value={secretaire.surname} id="surname"   required placeholder="surname" />
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-md-12"><label className="labels">Cin</label>
-                  <input type="text" className="form-control" onChange={handleChange} id="cin" name="cin" required value={formData.cin} placeholder="Cin" />
+                  <input type="text" className="form-control" onChange={handleChange} id="cin" name="cin" required value={secretaire.cin} placeholder="Cin" />
+
                 </div>
                 <div className="col-md-12"><label className="labels">Date de Naissance</label>
-                  <input type="date" className="form-control" onChange={handleChange} id="datedenaissance" value={formData.datedenaissance} name="datedenaissance" />
+                  <input type="date" className="form-control" onChange={handleChange} id="datedenaissance" value={secretaire.datedenaissance} name="datedenaissance" />
+
                 </div>
                 <div className="col-md-12"><label className="labels">Mobile Number</label>
-                  <input type="text" className="form-control" onChange={handleChange} id="mobile_number" name="mobile_number" required value={formData.mobile_number} placeholder="enter phone number" />
+                  <input type="text" className="form-control" onChange={handleChange} id="mobile_number" name="mobile_number" required value={secretaire.mobile_number} placeholder="enter phone number" />
+
                 </div>
                 <div className="col-md-12"><label className="labels">Address Line 1</label>
-                  <input type="text" className="form-control" onChange={handleChange} id="address_line1" name="address_line1" required value={formData.address_line1} placeholder="enter address line 1" />
+                  <input type="text" className="form-control" onChange={handleChange} id="address_line1" name="address_line1" required value={secretaire.address_line1} placeholder="enter address line 1" />
+
                 </div>
                 <div className="col-md-12"><label className="labels">Email</label>
-                  <input type="email" className="form-control" onChange={handleChange} id="email" name="email" required value={formData.email} placeholder="enter email" />
+                  <input type="email" className="form-control" onChange={handleChange} id="email" name="email" required value={secretaire.email} placeholder="enter email" />
+
                 </div>
               </div>
+
               <div className="row mt-3">
                 <div className="col-md-6">
                   <label className="labels">Country</label>
-                  <select className="form-control" onChange={handleChange} id="Country" value={formData.Country} name="Country">
+                  <select className="form-control" onChange={handleChange} id="Country" value={secretaire.Country} name="Country">
+
                     <option value="">Select Country</option>
                     <option value="Algeria">Algeria</option>
                     <option value="Angola">Angola</option>
@@ -196,7 +165,8 @@ const AjouterEtd = () => {
                   </select>
                 </div>
                 <div className="col-md-6"><label className="labels">Region</label>
-                  <input type="text" className="form-control" onChange={handleChange} id="Region" name="Region" required value={formData.Region} placeholder="state" />
+                  <input type="text" className="form-control" onChange={handleChange} id="Region" name="Region" required value={secretaire.Region} placeholder="state" />
+
                 </div>
               </div>
 
@@ -222,4 +192,4 @@ const AjouterEtd = () => {
 };
 
 
-export default AjouterEtd;
+export default ModifierSec;

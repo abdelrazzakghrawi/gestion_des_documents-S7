@@ -11,8 +11,11 @@ import Document from "./views/EtudiantViews/Document.jsx";
 import SecretaireLayout from "./composants/SecretaireLayout.jsx";
 import AdminLayout from "./composants/AdminLayout.jsx";
 import DashboardSecretaire from "./views/SecretaryViews/DashboardSecretaire.jsx";
-import DashboardAdmin from "./views/AdminViews/dashboardAdmin.jsx";
-import ListeEtudiants from "./views/AdminViews/ListeEtudiants.jsx";
+import DashboardAdmin from "./views/AdminViews/Etudiant/dashboardAdmin.jsx";
+import ListeEtudiants from "./views/AdminViews/Etudiant/ListeEtudiants.jsx";
+import AjouterEtd from './views/AdminViews/Etudiant/AjouterEtd.jsx';
+import AjouterSec from "./views/AdminViews/Etudiant/AjouterEtd.jsx";
+import ListeSecretaires from "./views/AdminViews/secretaire/ListeSecretaires.jsx";
 
 const router = createBrowserRouter([
   {
@@ -58,13 +61,10 @@ const router = createBrowserRouter([
     path: "/secretaire",
     element: <SecretaireLayout />,
     children: [
-
-
       {
         path: "dashboardSecretaire",
         element: <DashboardSecretaire />
       },
-
       // Other routes for the secretaire
     ]
   },
@@ -79,7 +79,22 @@ const router = createBrowserRouter([
       {
         path: "ListeEtudiants",
         element: <ListeEtudiants />
+
       },
+      {
+        path: "ajouterEtd",
+        element: <AjouterEtd/>
+      },
+      {
+        path: "ListeSecretaires",
+        element: <ListeSecretaires/>
+      },
+      {
+        path: "ajouterSec",
+        element: <AjouterSec/>
+      },
+
+
       // Other routes for the directeur
     ]
   }

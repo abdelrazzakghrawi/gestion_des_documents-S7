@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-const ViewEtudiant = () => {
-  const [etudiant, setEtudiant] = useState(null);
+const ViewSecretaires = () => {
+  const [secretaire, setSecretaires] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchEtudiantDetails = async () => {
+    const fetchsecretaireDetails = async () => {
       try {
-        const result = await axios(`http://localhost:8000/api/etudiants/${id}`);
-        setEtudiant(result.data);
+        const result = await axios(`http://localhost:8000/api/secretaires/${id}`);
+        setSecretaires(result.data);
       } catch (error) {
-        console.error("Error fetching student details:", error);
+        console.error("Error fetching secretaire details:", error);
       }
     };
 
-    fetchEtudiantDetails();
+    fetchsecretaireDetails();
   }, [id]);
 
-  if (!etudiant) {
+  if (!secretaire) {
     return <div>Loading...</div>;
   }
 
@@ -42,8 +42,8 @@ const ViewEtudiant = () => {
                       {/* <div class="m-b-25">
                     <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
                      </div> */}
-                      <h6 className="f-w-600">{etudiant.name} {etudiant.surname}</h6>
-                      <p>{etudiant.name}eme annee{etudiant.name}</p>
+                      <h6 className="f-w-600">{secretaire.name} {secretaire.surname}</h6>
+                      <p>{secretaire.name}eme annee{secretaire.name}</p>
                       <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16" />
                     </div>
                   </div>
@@ -53,54 +53,39 @@ const ViewEtudiant = () => {
                       <div className="row">
                         <div className="col-sm-6">
                           <p className="m-b-10 f-w-600">Cin</p>
-                          <h6 className="text-muted f-w-400">{etudiant.cin}</h6>
+                          <h6 className="text-muted f-w-400">{secretaire.cin}</h6>
                         </div>
                         <div className="col-sm-6">
                           <p className="m-b-10 f-w-600">Email</p>
-                          <h6 className="text-muted f-w-400">{etudiant.email}</h6>
+                          <h6 className="text-muted f-w-400">{secretaire.email}</h6>
                         </div>
                       </div>
                       <div className="row">
                         <div className="col-sm-6">
                           <p className="m-b-10 f-w-600">Date de Naissance</p>
-                          <h6 className="text-muted f-w-400">{etudiant.datedenaissance}</h6>
+                          <h6 className="text-muted f-w-400">{secretaire.datedenaissance}</h6>
                         </div>
                         <div className="col-sm-6">
                           <p className="m-b-10 f-w-600">Phone</p>
-                          <h6 className="text-muted f-w-400">{etudiant.mobile_number}</h6>
+                          <h6 className="text-muted f-w-400">{secretaire.mobile_number}</h6>
                         </div>
                       </div>
                       <div className="row">
                         <div className="col-sm-6">
                           <p className="m-b-10 f-w-600">Addresse 1</p>
-                          <h6 className="text-muted f-w-400">{etudiant.address_line1}</h6>
+                          <h6 className="text-muted f-w-400">{secretaire.address_line1}</h6>
                         </div>
-                        <div className="col-sm-6">
-                          <p className="m-b-10 f-w-600">Addresse 2</p>
-                          <h6 className="text-muted f-w-400">{etudiant.address_line2}</h6>
-                        </div>
+
                       </div>
                       <div className="row">
                         <div className="col-sm-6">
                           <p className="m-b-10 f-w-600">Country</p>
-                          <h6 className="text-muted f-w-400">{etudiant.Country}</h6>
+                          <h6 className="text-muted f-w-400">{secretaire.Country}</h6>
                         </div>
                         <div className="col-sm-6">
                           <p className="m-b-10 f-w-600">Region</p>
-                          <h6 className="text-muted f-w-400">{etudiant.Region}</h6>
+                          <h6 className="text-muted f-w-400">{secretaire.Region}</h6>
                         </div>
-                      </div>
-                      <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"> </h6>
-                      <p className="m-b-10 f-w-600">Paiement Status ({etudiant.paiement_status}%) </p>
-                      <div className="custom-progress progress">
-                        <div
-                          role="progressbar"
-                          aria-valuenow={etudiant.paiement_status}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          style={{ width: `${etudiant.paiement_status}%` }}
-                          className="animated custom-bar progress-bar slideInLeft bg-sky"
-                        />
                       </div>
                     </div>
                   </div>
@@ -136,4 +121,4 @@ const ViewEtudiant = () => {
   );
 };
 
-export default ViewEtudiant;
+export default ViewSecretaires;

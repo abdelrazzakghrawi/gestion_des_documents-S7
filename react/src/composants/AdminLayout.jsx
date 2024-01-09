@@ -1,7 +1,7 @@
 import  { useEffect } from 'react';
 import { Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../contexts/Context";
-import Navbar from '../views/AdminViews/Navbar'; // Assurez-vous que le chemin est correct
+import Navbar from '../views/AdminViews/Navbar.jsx'; // Assurez-vous que le chemin est correct
 import axiosClient from "../axios-client.js";
 
 const AdminLayout = () => {
@@ -16,6 +16,8 @@ const AdminLayout = () => {
                 });
         }
     }, [user, setUser]);
+
+
 
     const onLogout = (ev) => {
         ev.preventDefault();
@@ -44,7 +46,6 @@ const AdminLayout = () => {
 
         <main className="admin-content">
                 <Outlet />
-                
         </main>
         <footer className="admin-footer">
                 {/* Contenu du pied de page */}

@@ -1,33 +1,49 @@
-import { Outlet, Navigate,  } from "react-router-dom";
-import { useStateContext } from "../contexts/Context";
-// SecretaireLayout.jsx
+import { Navigate, Outlet } from 'react-router-dom';
+import { useStateContext } from '../contexts/Context';
+import  { useEffect } from 'react';
+import SecretaryNavbar from '../views/SecretaryViews/SecretaryNavbar .jsx';
+import axiosClient from "../axios-client.js";
 
 const SecretaireLayout = () => {
-    const { role, token } = useStateContext();
+    const { user, token, setUser, setToken ,role} = useStateContext();
 
-    // Si l'utilisateur n'est pas connecté, le rediriger vers la page de connexion
+    useEffect(() => {
+        // Chargement des informations utilisateur au montage du composant
+        if (!user) {
+            axiosClient.get('/user')
+                .then(({ data }) => {
+                    setUser(data);
+                });
+        }
+    }, [user, setUser]);
+
+    const onLogout = (ev) => {
+        ev.preventDefault();
+        axiosClient.post('/logout')
+            .then(() => {
+                setUser({});
+                setToken(null);
+            });
+    };
     if (!token) {
         return <Navigate to="/login" />;
     }
 
-    // Si l'utilisateur n'est pas un secrétaire, rediriger vers une page non autorisée
-    if (role !== 'secretaire') {
-        return <Navigate to="/unauthorized" />;
-    }
+    if (role != 'secretaire') {
+        return <Navigate to="/secretaire/dashboardSecretaire"/>;
+}
 
     return (
         <div className="secretaire-layout">
-            {/* Votre contenu spécifique au layout de la secrétaire */}
-            <nav>
-                {/* Vos liens de navigation */}
-            </nav>
-            <main>
-                {/* Outlet rendra les composants enfants spécifiés dans les routes */}
+            <SecretaryNavbar userName={user?.name} onLogout={onLogout} />
+            <main className="secretaire-content">
                 <Outlet />
             </main>
+            {/* Pied de page si nécessaire */}
         </div>
     );
 };
 
 export default SecretaireLayout;
+
 

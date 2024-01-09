@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
@@ -37,7 +37,8 @@ const AjouterSec = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
-        const response = await axios.post('http://localhost:8000/api/add_etudiants', formData);
+        const response = await axios.post('http://localhost:8000/api/add_secretaires', formData);
+
         console.log('Response:', response.data);
 
          if (response.data.success) {
@@ -103,26 +104,12 @@ const AjouterSec = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
      return errors;
+
+
   };
+
+
 
   return (
     <div>

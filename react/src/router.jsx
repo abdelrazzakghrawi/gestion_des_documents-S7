@@ -17,7 +17,6 @@ import AjouterEtd from './views/AdminViews/Etudiant/AjouterEtd.jsx';
 
 
 import AjouterSec from "./views/AdminViews/secretaire/AjouterSec.jsx";
-
 import ListeSecretaires from "./views/AdminViews/secretaire/ListeSecretaires.jsx";
 import ViewSecretaires from "./views/AdminViews/secretaire/ViewSecretaires.jsx";
 import ModifierSec from "./views/AdminViews/secretaire/ModifierSec.jsx";
@@ -26,7 +25,13 @@ import ModifierSec from "./views/AdminViews/secretaire/ModifierSec.jsx";
 import ViewEtudiant from './views/AdminViews/Etudiant/ViewEtudiant.jsx';
 import Modifieretd from './views/AdminViews/Etudiant/Modifieretd.jsx';
 
+import Vacance from "./views/EtudiantViews/Document/vacance.jsx";
+import Presentationfilliere from "./views/EtudiantViews/Document/presentationfilliere.jsx";
+import Emploi from "./views/EtudiantViews/Document/emploi.jsx";
+import Paiement from "./views/EtudiantViews/Document/paiement.jsx";
 
+import Releve from "./views/EtudiantViews/Document/Releve.jsx";
+import Scolarite from "./views/EtudiantViews/Document/scolarité.jsx";
 
 
 
@@ -50,6 +55,35 @@ const router = createBrowserRouter([
       {
         path: "/document",
         element: <Document />,
+      },
+
+      {
+        path: "/vacances",
+        element: <Vacance/>,
+      },
+      {
+        path: "/Presentationfilliere",
+        element: <Presentationfilliere/>,
+      },
+      {
+        path: "/Emploi",
+        element: <Emploi/>,
+      },
+      {
+        path: "/Emploi",
+        element: <Emploi/>,
+      },
+      {
+        path: "/Paiement",
+        element: <Paiement/>,
+      },
+      {
+        path: "/Releve",
+        element: <Releve/>,
+      },
+      {
+        path: "/scolarite",
+        element: <Scolarite/>,
       },
     ]
   }, {
@@ -129,8 +163,7 @@ const router = createBrowserRouter([
         element: <ModifierSec/>
       },
 
-      // Other routes for the directeur
-    ]
+     ]
   }
 ]);
 

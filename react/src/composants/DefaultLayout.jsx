@@ -43,7 +43,7 @@ export default function DefaultLayout() {
             <div className="content">
                 <header>
                     <div>
-                        UPFDOC
+                        <a>UPFDOC</a>
                     </div>
                     <div>
                         {user.name}

@@ -28,7 +28,7 @@ export default function Document() {
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
                                         <a target="_blank" className="btn btn-primary">Demander</a>
-                                        <a target="_blank" href='/documents/attestation' className="btn btn-secondary">Imprimer</a>
+                                        <a target="_blank" href='/scolarite' className="btn btn-secondary">Imprimer</a>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@ export default function Document() {
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
                                         <a target="_blank" className="btn btn-primary">Demander</a>
-                                        <a target="_blank" href='/documents/releve' className="btn btn-secondary">Imprimer</a>
+                                        <a target="_blank" href='/Releve' className="btn btn-secondary">Imprimer</a>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@ export default function Document() {
                                     </div>
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
-                                        <a target="_blank" href='/documents/paiement' className="btn btn-secondary">Imprimer</a>
+                                        <a target="_blank" href='/Paiement' className="btn btn-secondary">Imprimer</a>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@ export default function Document() {
                                     </div>
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
-                                        <a target="_blank" href='/documents/vacances' className="btn btn-secondary">Imprimer</a>
+                                        <a target="_blank" href='/vacances' className="btn btn-secondary">Imprimer</a>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@ export default function Document() {
                                     </div>
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
-                                        <a target="_blank" href='/documents/emploi' className="btn btn-secondary">Imprimer</a>
+                                        <a target="_blank" href='/Emploi' className="btn btn-secondary">Imprimer</a>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@ export default function Document() {
                                     </div>
                                     <div className="food-card_bottom-section">
                                         <hr /><br />
-                                        <a target="_blank" className="btn btn-secondary">Imprimer</a>
+                                        <a href='/Presentationfilliere' target="_blank" className="btn btn-secondary">Imprimer</a>
                                     </div>
                                 </div>
                             </div>

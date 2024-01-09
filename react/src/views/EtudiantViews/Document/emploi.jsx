@@ -16,6 +16,8 @@ function emploi() {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>University Timetable</title>
                 <style dangerouslySetInnerHTML={{ __html: " table {   width: 80%;   margin: 20px auto;   border-collapse: collapse; } table, th, td {   border: 1px solid #333; } th, td {   padding: 10px;   text-align: left; } th {   background-color: #555;   color: #fff; } td {   background-color: #eee; } tr:nth-child(even) td {   background-color: #ddd; }" }} />
+                <style dangerouslySetInnerHTML={{__html: "Nav, Aside,a { display: none; /* Hide navbar and aside when printing } " }} />
+
                 <div className="page">
                     <div className="header">
                     <img src={logo} alt="Logo" className="header-logo" />

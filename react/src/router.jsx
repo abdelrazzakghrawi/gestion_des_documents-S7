@@ -27,13 +27,18 @@ import ModifierSec from "./views/AdminViews/secretaire/ModifierSec.jsx";
 import ViewEtudiant from './views/AdminViews/Etudiant/ViewEtudiant.jsx';
 import Modifieretd from './views/AdminViews/Etudiant/Modifieretd.jsx';
 
-// import Vacance from "./views/EtudiantViews/Document/vacance.jsx";
-// import Presentationfilliere from "./views/EtudiantViews/Document/presentationfilliere.jsx";
-// import Emploi from "./views/EtudiantViews/Document/emploi.jsx";
-// import Paiement from "./views/EtudiantViews/Document/paiement.jsx";
 
-// import Releve from "./views/EtudiantViews/Document/Releve.jsx";
-// import Scolarite from "./views/EtudiantViews/Document/scolarité.jsx";
+
+
+import EmptyLayout from "./composants/EmplyLayout.jsx";
+
+import Vacance from "./views/EtudiantViews/Document/vacance.jsx";
+ import Presentationfilliere from "./views/EtudiantViews/Document/presentationfilliere.jsx";
+ import Emploi from "./views/EtudiantViews/Document/emploi.jsx";
+ import Paiement from "./views/EtudiantViews/Document/paiement.jsx";
+
+import Releve from "./views/EtudiantViews/Document/Releve.jsx";
+import Scolarite from "./views/EtudiantViews/Document/scolarité.jsx";
 
 import DocRequested from './views/AdminViews/Requests.jsx';
 
@@ -54,42 +59,16 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <Users />
-      },
-      {
-        path: "/Requests",
-        element: <Requests />
-      },
-      {
-        path: "/document",
-        element: <Document />,
-      },
-
-      // {
-      //   path: "/vacances",
-      //   element: <Vacance/>,
-      // },
+      },{        path: "/Requests/:id",
+      element: <Requests />
+    },
       
-      // {
-      //   path: "/Presentationfilliere",
-      //   element: <Presentationfilliere/>,
-      // },
-      // {
-      //   path: "/Emploi",
-      //   element: <Emploi/>,
-      // },
+    {
+      path: "document/:id",
+      element: <Document />,
+    },
+
      
-      // {
-      //   path: "/Paiement",
-      //   element: <Paiement/>,
-      // },
-      // {
-      //   path: "/Releve",
-      //   element: <Releve/>,
-      // },
-      // {
-      //   path: "/scolarite",
-      //   element: <Scolarite/>,
-      // },
     ]
   }, {
     path: "/",
@@ -175,7 +154,48 @@ const router = createBrowserRouter([
       
 
      ]
+  },
+  {
+    path: "docs",
+    element: <EmptyLayout />,
+    children: [
+      {
+        path: "scolarite/:id",  // Removed the leading '/'
+        element: <Scolarite/>,
+      },  
+      {
+        path: "Releve/:id",
+        element: <Releve/>,
+         },
+
+        {
+           path: "vacances",
+           element: <Vacance/>,
+         },
+        
+       {
+         path: "Presentationfilliere",
+         element: <Presentationfilliere/>,
+       },
+       {
+         path: "Emploi",
+         element: <Emploi/>,
+       },
+       
+       {
+         path: "Paiement",
+         element: <Paiement/>,
+       },
+      
+
+
+
+
+    ]
   }
+  
+
+
 ]);
 
 export default router;

@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('document_id');
-            $table->boolean('verified')->default(false); // Additional verified column
+            $table->string('status')->default('pending'); // Use string data type
             $table->timestamps();
+        
             // Foreign key constraints (if necessary)
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('document_id')->references('id')->on('documents');
         });
+        
     }
 
     /**

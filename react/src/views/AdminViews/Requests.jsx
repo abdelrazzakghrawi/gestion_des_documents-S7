@@ -1,8 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Requests() {
     const [documents, setDocuments] = useState([]);
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
 
 
  
@@ -16,6 +34,62 @@ function Requests() {
             });
     }, []);
     
+
+
+
+
+
+    const handleValidate = (docId) => {
+      // Make an API request to update the document status to 'validé'
+      axios.put(`http://localhost:8000/api/document-requests/${docId}/validate`, { status: 'validé' })
+          .then(response => {
+              // Update the state to reflect the change
+              setDocuments(prevDocuments => {
+                  const updatedDocuments = prevDocuments.map(doc => {
+                      if (doc.id === docId) {
+                          doc.status = 'accepted';
+                      }
+                      return doc;
+                  });
+                  return updatedDocuments;
+              });
+              window.location.reload();
+            })
+          .catch(error => {
+              console.error('Error validating document', error);
+          });
+  };
+
+    const handleReject = (docId) => {
+      // Make an API request to update the document status to 'validé'
+      axios.put(`http://localhost:8000/api/document-requests/${docId}/reject`, { status: 'rejected' })
+          .then(response => {
+              // Update the state to reflect the change
+              setDocuments(prevDocuments => {
+                  const updatedDocuments = prevDocuments.map(doc => {
+                      if (doc.id === docId) {
+                          doc.status = 'rejected';
+                      }
+                      return doc;
+                  });
+                  return updatedDocuments;
+              });
+            
+              window.location.reload();
+
+          })
+          .catch(error => {
+              console.error('Error rejected document', error);
+          });
+        };
+
+
+
+
+ 
+
+
+
 
     return (
         <div className="container">
@@ -42,6 +116,7 @@ function Requests() {
                 <span className="widget-49-pro-title">{doc.document.document_name}</span>
                 <span className="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
                 <span className="widget-49-meeting-time">{doc.user.role}</span>
+                <span className="widget-49-meeting-time">{doc.user.id}</span>
               </div>
 
               
@@ -65,11 +140,10 @@ function Requests() {
 
 </div>
 
-            <ul className="widget-49-meeting-points">
-            <a style={{marginRight: '20px'}} href="#" className="btn btn-primary">Valider</a>
-
-            <a href="#" className="btn btn-danger">Refuser</a>
-            </ul>
+<ul className="widget-49-meeting-points">
+                                <button onClick={() => handleValidate(doc.id)} className="btn btn-primary">Valider</button>
+                                <button onClick={() => handleReject(doc.id)} className="btn btn-danger">Refuser</button>
+                            </ul>
           </div>
         </div>
       </div>

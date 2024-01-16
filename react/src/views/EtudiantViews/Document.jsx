@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useStateContext } from "../../contexts/Context";
+import { useNavigate } from 'react-router-dom';
+
+import { useParams } from 'react-router-dom';
 
 function Document() {
     const [documents, setDocuments] = useState([]);
+    const navigate = useNavigate();
 
 
-    const { user, token } = useStateContext();
+    const { id } = useParams();
+
+
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/documents')
@@ -18,47 +23,50 @@ function Document() {
             });
     }, []);
 
-    function handleDocumentRequest(documentId) {
-        axios.post(`http://localhost:8000/document-request/${documentId}`, {}, {
-            headers: {
-                'Authorization': `Bearer ${token}`, // Using token from the outer scope
-                'Content-Type': 'application/json'
-            }
+    const handleDocumentRequest = (documentId) => {
+        axios.post('http://localhost:8000/api/document_request', {
+            user_id: id,
+            document_id: documentId,
+            // You can also send other necessary fields like status, created_at, etc., if required
         })
-        .then(response => {
-            console.log('Document request successful', response.data);
-        })
-        .catch(error => {
-            console.error('Error in document request', error);
-        });
+            .then(response => {
+                console.log('Document request submitted', response);
+                navigate(`/Requests/${id}`);
+
+            })
+            .catch(error => {
+                console.error('Error submitting document request', error);
+                // Handle errors (e.g., show an error message to the user)
+            });
     };
-    
 
     return (
+
         <div className="main-content">
             <div className="container">
                 <div className="row">
                     {documents.map(doc => (
-                          <div className="col-sm-6 col-md-4 col-lg-4"  key={doc.id}>
-                          <div className="food-card food-card--vertical">
-                              <div className="food-card_img">
 
-                              <img src={doc.image_path} alt={doc.document_name} />
-                              </div>
+                        <div className="col-sm-6 col-md-4 col-lg-4" key={doc.id}>
+                            <div className="food-card food-card--vertical">
+                                <div className="food-card_img">
+
+
+                                </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
                                         <span className="food-card_title">{doc.document_name}</span>
                                         {doc.requirevalidation && (
-                                            <span className="food-card_author">Requires Validation</span>
+                                            <h6 className="text-danger">Requires Validation</h6>
                                         )}
                                     </div>
                                     <div className="food-card_bottom-section">
                                         <hr />
                                         {doc.requirevalidation ? (
-  <a href='#' onClick={() => handleDocumentRequest(doc.id)} className="btn btn-secondary">Request</a>
-                                            ) : (
+                                            <a href='#' onClick={() => handleDocumentRequest(doc.id)} className="btn btn-secondary">Request</a>
+                                        ) : (
                                             <a target="_blank" href={doc.print_path} className="btn btn-secondary">Imprimer</a>
-                                            )}
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +74,8 @@ function Document() {
                     ))}
                 </div>
             </div>
-            <style dangerouslySetInnerHTML={{ __html: `
+            <style dangerouslySetInnerHTML={{
+                __html: `
                 body {
                     background: #f9f9f9;
                     font-family: "roboto", sans-serif;

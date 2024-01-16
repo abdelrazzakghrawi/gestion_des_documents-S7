@@ -35,9 +35,9 @@ export default function DefaultLayout() {
         <div id="defaultLayout">
             <aside>
                 <Link to="/dashboard">Dashboard</Link>
-                <Link to="/Document">Document</Link>
+                <Link to={`/Document/${user.id}`}>Document</Link>
                 <Link to="/users">Users</Link>
-                <Link to="/Requests">Requests</Link>
+                <Link to={`/Requests/${user.id}`}>Requests</Link>
 
 
             </aside>

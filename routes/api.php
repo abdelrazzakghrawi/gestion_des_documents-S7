@@ -53,6 +53,12 @@ Route::put('/etudiants/{id}', [EtudiantController::class, 'update']);
 
 
   Route::get('/Document_Requested', [DocumentRequestController::class, 'index']);
+  Route::get('/Requests/{id}', [DocumentRequestController::class, 'find']);
 
 
   Route::get('/documents', [DocumentController::class, 'index']);
+
+  Route::post('/document_request', [DocumentRequestController::class, 'store']);
+  
+   Route::put('/document-requests/{id}/reject', [DocumentRequestController::class, 'rejectDocument']);
+  Route::put('/document-requests/{id}/validate', [DocumentRequestController::class, 'validateDocument']);

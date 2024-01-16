@@ -1,123 +1,71 @@
-import attes from './DocImage/attes.png';
-import emploi from './DocImage/emploi.png';
-import releve from './DocImage/relevedenotes.png';
-import presentationfilliere from './DocImage/presentationfilliere.png';
-import vacances from './DocImage/vacances.png';
-import pai from './DocImage/fichepaiem.png';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useStateContext } from "../../contexts/Context";
+
+function Document() {
+    const [documents, setDocuments] = useState([]);
 
 
+    const { user, token } = useStateContext();
 
-export default function Document() {
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/documents')
+            .then(response => {
+                setDocuments(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching documents', error);
+            });
+    }, []);
+
+    function handleDocumentRequest(documentId) {
+        axios.post(`http://localhost:8000/document-request/${documentId}`, {}, {
+            headers: {
+                'Authorization': `Bearer ${token}`, // Using token from the outer scope
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            console.log('Document request successful', response.data);
+        })
+        .catch(error => {
+            console.error('Error in document request', error);
+        });
+    };
+    
+
     return (
-        <div>
-             <section className="main-contentt">
-                <div className="containerr">
-                    <div className="row">
-                        {/* Carte Attestation de Scolarité */}
-                        <div className="col-sm-6 col-md-4 col-lg-4">
-                            <div className="food-card food-card--vertical">
-                                <div className="food-card_img">
-                                    <img src={attes} alt="Attestation de Scolarité" />
-                                </div>
+        <div className="main-content">
+            <div className="container">
+                <div className="row">
+                    {documents.map(doc => (
+                          <div className="col-sm-6 col-md-4 col-lg-4"  key={doc.id}>
+                          <div className="food-card food-card--vertical">
+                              <div className="food-card_img">
+
+                              <img src={doc.image_path} alt={doc.document_name} />
+                              </div>
                                 <div className="food-card_content">
                                     <div className="food-card_title-section">
-                                        <span className="food-card_title">Attestation de Scolarite</span> <br/>
-                                        <span className="food-card_author">Necessite Validation </span>
+                                        <span className="food-card_title">{doc.document_name}</span>
+                                        {doc.requirevalidation && (
+                                            <span className="food-card_author">Requires Validation</span>
+                                        )}
                                     </div>
                                     <div className="food-card_bottom-section">
-                                        <hr /><br />
-                                        <a target="_blank" className="btn btn-primary">Demander</a>
-                                        <a target="_blank" href='/scolarite' className="btn btn-secondary">Imprimer</a>
+                                        <hr />
+                                        {doc.requirevalidation ? (
+  <a href='#' onClick={() => handleDocumentRequest(doc.id)} className="btn btn-secondary">Request</a>
+                                            ) : (
+                                            <a target="_blank" href={doc.print_path} className="btn btn-secondary">Imprimer</a>
+                                            )}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-sm-6 col-md-4 col-lg-4">
-                            <div className="food-card food-card--vertical">
-                                <div className="food-card_img">
-                                    <img src={releve} alt="Relevé de Notes" />
-                                </div>
-                                <div className="food-card_content">
-                                    <div className="food-card_title-section">
-                                        <span className="food-card_title">Relevé de Notes</span> <br/>
-                                        <span className="food-card_author">Necessite Validation </span>
-                                    </div>
-                                    <div className="food-card_bottom-section">
-                                        <hr /><br />
-                                        <a target="_blank" className="btn btn-primary">Demander</a>
-                                        <a target="_blank" href='/Releve' className="btn btn-secondary">Imprimer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-md-4 col-lg-4">
-                            <div className="food-card food-card--vertical">
-                                <div className="food-card_img">
-                                    <img src={pai} alt="Fiche de paiement" />
-                                </div>
-                                <div className="food-card_content">
-                                    <div className="food-card_title-section">
-                                        <span className="food-card_title">Fiche de paiement</span>
-                                    </div>
-                                    <div className="food-card_bottom-section">
-                                        <hr /><br />
-                                        <a target="_blank" href='/Paiement' className="btn btn-secondary">Imprimer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-md-4 col-lg-4">
-                            <div className="food-card food-card--vertical">
-                                <div className="food-card_img">
-                                    <img src={vacances} alt="Liste des Vacances" />
-                                </div>
-                                <div className="food-card_content">
-                                    <div className="food-card_title-section">
-                                        <span className="food-card_title">Liste des Vacances</span>
-                                    </div>
-                                    <div className="food-card_bottom-section">
-                                        <hr /><br />
-                                        <a target="_blank" href='/vacances' className="btn btn-secondary">Imprimer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-md-4 col-lg-4">
-                            <div className="food-card food-card--vertical">
-                                <div className="food-card_img">
-                                    <img src={emploi} alt="Emploi de temps" />
-                                </div>
-                                <div className="food-card_content">
-                                    <div className="food-card_title-section">
-                                        <span className="food-card_title">Emploi de temps</span>
-                                    </div>
-                                    <div className="food-card_bottom-section">
-                                        <hr /><br />
-                                        <a target="_blank" href='/Emploi' className="btn btn-secondary">Imprimer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-md-4 col-lg-4">
-                            <div className="food-card food-card--vertical">
-                                <div className="food-card_img">
-                                    <img src={presentationfilliere} alt="Presentation de la fillière" />
-                                </div>
-                                <div className="food-card_content">
-                                    <div className="food-card_title-section">
-                                        <span className="food-card_title">Presentation de la fillière</span>
-                                    </div>
-                                    <div className="food-card_bottom-section">
-                                        <hr /><br />
-                                        <a href='/Presentationfilliere' target="_blank" className="btn btn-secondary">Imprimer</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
-            </section>
+            </div>
             <style dangerouslySetInnerHTML={{ __html: `
                 body {
                     background: #f9f9f9;
@@ -170,7 +118,8 @@ export default function Document() {
                     }
                 }
             ` }} />
-
         </div>
     );
 }
+
+export default Document;

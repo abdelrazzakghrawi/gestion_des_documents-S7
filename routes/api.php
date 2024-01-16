@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\SecretaireController;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\DocumentRequestController;
+ 
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +48,11 @@ Route::put('/etudiants/{id}', [EtudiantController::class, 'update']);
  Route::get('/secretaires/{id}', [SecretaireController::class, 'show']);
  Route::put('/secretaires/{id}', [SecretaireController::class, 'update']);
 
+
+
+
+
+  Route::get('/Document_Requested', [DocumentRequestController::class, 'index']);
+
+
+  Route::get('/documents', [DocumentController::class, 'index']);

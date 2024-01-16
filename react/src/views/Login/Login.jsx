@@ -103,7 +103,7 @@ const Login = () => {
                 <div className="form-container sign-in">
                     <form onSubmit={onSubmit}>
                         {/* Lien vers la création d'un compte */}
-                        {/* <Link to="/signup">Create an account</Link> */}
+                        { <Link to="/signup">Create an account</Link> }
 
                         {/* Titre pour la partie "Étudiant" */}
                         <h1>Étudiant</h1>

@@ -3,6 +3,8 @@ import {  Navigate, createBrowserRouter } from "react-router-dom";
 import Login from "./views/Login/Login.jsx";
 import Signup from "./views/Login/Signup.jsx";
 import Users from "./views/EtudiantViews/Users.jsx";
+import Requests from "./views/EtudiantViews/CurrentRequests.jsx";
+
 import Dashboard from "./views/EtudiantViews/Dashboard.jsx";
 import NotFound from "./views/NotFound.jsx";
 import DefaultLayout from "./composants/DefaultLayout.jsx";
@@ -25,14 +27,15 @@ import ModifierSec from "./views/AdminViews/secretaire/ModifierSec.jsx";
 import ViewEtudiant from './views/AdminViews/Etudiant/ViewEtudiant.jsx';
 import Modifieretd from './views/AdminViews/Etudiant/Modifieretd.jsx';
 
-import Vacance from "./views/EtudiantViews/Document/vacance.jsx";
-import Presentationfilliere from "./views/EtudiantViews/Document/presentationfilliere.jsx";
-import Emploi from "./views/EtudiantViews/Document/emploi.jsx";
-import Paiement from "./views/EtudiantViews/Document/paiement.jsx";
+// import Vacance from "./views/EtudiantViews/Document/vacance.jsx";
+// import Presentationfilliere from "./views/EtudiantViews/Document/presentationfilliere.jsx";
+// import Emploi from "./views/EtudiantViews/Document/emploi.jsx";
+// import Paiement from "./views/EtudiantViews/Document/paiement.jsx";
 
-import Releve from "./views/EtudiantViews/Document/Releve.jsx";
-import Scolarite from "./views/EtudiantViews/Document/scolarité.jsx";
+// import Releve from "./views/EtudiantViews/Document/Releve.jsx";
+// import Scolarite from "./views/EtudiantViews/Document/scolarité.jsx";
 
+import DocRequested from './views/AdminViews/Requests.jsx';
 
 
 const router = createBrowserRouter([
@@ -53,38 +56,40 @@ const router = createBrowserRouter([
         element: <Users />
       },
       {
+        path: "/Requests",
+        element: <Requests />
+      },
+      {
         path: "/document",
         element: <Document />,
       },
 
-      {
-        path: "/vacances",
-        element: <Vacance/>,
-      },
-      {
-        path: "/Presentationfilliere",
-        element: <Presentationfilliere/>,
-      },
-      {
-        path: "/Emploi",
-        element: <Emploi/>,
-      },
-      {
-        path: "/Emploi",
-        element: <Emploi/>,
-      },
-      {
-        path: "/Paiement",
-        element: <Paiement/>,
-      },
-      {
-        path: "/Releve",
-        element: <Releve/>,
-      },
-      {
-        path: "/scolarite",
-        element: <Scolarite/>,
-      },
+      // {
+      //   path: "/vacances",
+      //   element: <Vacance/>,
+      // },
+      
+      // {
+      //   path: "/Presentationfilliere",
+      //   element: <Presentationfilliere/>,
+      // },
+      // {
+      //   path: "/Emploi",
+      //   element: <Emploi/>,
+      // },
+     
+      // {
+      //   path: "/Paiement",
+      //   element: <Paiement/>,
+      // },
+      // {
+      //   path: "/Releve",
+      //   element: <Releve/>,
+      // },
+      // {
+      //   path: "/scolarite",
+      //   element: <Scolarite/>,
+      // },
     ]
   }, {
     path: "/",
@@ -122,6 +127,10 @@ const router = createBrowserRouter([
       {
         path: "dashboardAdmin",
         element: <DashboardAdmin />
+      },
+      {
+        path: "Document_Requested",
+        element: <DocRequested/>
       },
       {
         path: "ListeEtudiants",
@@ -162,6 +171,8 @@ const router = createBrowserRouter([
         path: "ModifierSec/:id",
         element: <ModifierSec/>
       },
+
+      
 
      ]
   }

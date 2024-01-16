@@ -37,6 +37,7 @@ export default function DefaultLayout() {
                 <Link to="/dashboard">Dashboard</Link>
                 <Link to="/Document">Document</Link>
                 <Link to="/users">Users</Link>
+                <Link to="/Requests">Requests</Link>
 
 
             </aside>

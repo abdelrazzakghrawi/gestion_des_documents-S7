@@ -21,7 +21,7 @@ const Navbar = ({ userName , onLogout  }) => {
                         <Link to="/admin/ListeSecretaires" className="nav-link">Secretaire</Link>
                         </li>
                         <li className="nav-item">
-                        <Link to="/admin/Doc" className="nav-link">Docs</Link>
+                        <Link to="/admin/Document_Requested" className="nav-link">Current Requests</Link>
                         </li>
                     </ul>
                     <div className="navbar-text">

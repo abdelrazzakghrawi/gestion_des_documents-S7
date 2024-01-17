@@ -62,3 +62,6 @@ Route::put('/etudiants/{id}', [EtudiantController::class, 'update']);
   
    Route::put('/document-requests/{id}/reject', [DocumentRequestController::class, 'rejectDocument']);
   Route::put('/document-requests/{id}/validate', [DocumentRequestController::class, 'validateDocument']);
+
+
+  Route::get('/user/{id}', [AuthController::class, 'show']);

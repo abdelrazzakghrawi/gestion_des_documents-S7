@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
- import logo from './logo.png'; // Make sure the logo is in the same directory as this file
-import signature from './signature.png'; // Make sure the logo is in the same directory as this file
-import tampon from './tampon.png'; // Make sure the logo is in the same directory as this file
+
+ import logo from './logo.png'; 
+import signature from './signature.png'; 
+import tampon from './tampon.png'; 
+
+
 
  
 function emploi() {

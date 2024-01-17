@@ -65,7 +65,8 @@ function Document() {
                                         {doc.requirevalidation ? (
                                             <a href='#' onClick={() => handleDocumentRequest(doc.id)} className="btn btn-secondary">Request</a>
                                         ) : (
-                                            <a target="_blank" href={doc.print_path} className="btn btn-secondary">Imprimer</a>
+                                             <a target="_blank" href={`/docs/${doc.print_path}${id}`} className="btn btn-secondary">Imprimer</a>
+
                                         )}
                                     </div>
                                 </div>

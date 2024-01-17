@@ -9,6 +9,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+ 
+
+
 class AuthController extends Controller
 {
     // Méthode pour l'inscription d'un nouvel utilisateur
@@ -74,4 +77,17 @@ class AuthController extends Controller
         // Retourner une réponse vide avec le statut 204 (No Content)
         return response('', 204);
     }
+
+
+    public function show($id)
+    {
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['error' => 'user not found'], 404);
+        }
+        return response()->json($user);
+    }
+    
+
+
 }

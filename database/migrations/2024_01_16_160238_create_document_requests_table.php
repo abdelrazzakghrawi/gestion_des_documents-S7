@@ -17,8 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('document_id');
             $table->string('status')->default('pending'); // Use string data type
             $table->timestamps();
-        
-            // Foreign key constraints (if necessary)
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('document_id')->references('id')->on('documents');
         });

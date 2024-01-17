@@ -169,28 +169,24 @@ const router = createBrowserRouter([
          },
 
         {
-           path: "vacances",
+           path: "vacances/:id",
            element: <Vacance/>,
          },
         
        {
-         path: "Presentationfilliere",
+         path: "Presentationfilliere/:id",
          element: <Presentationfilliere/>,
        },
        {
-         path: "Emploi",
+         path: "Emploi/:id",
          element: <Emploi/>,
        },
        
        {
-         path: "Paiement",
+         path: "Paiement/:id",
          element: <Paiement/>,
        },
       
-
-
-
-
     ]
   }
   

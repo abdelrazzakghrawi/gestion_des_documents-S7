@@ -1,15 +1,61 @@
-import React, { useEffect } from 'react';
- import logo from './logo.png'; // Make sure the logo is in the same directory as this file
-import signature from './signature.png'; // Make sure the logo is in the same directory as this file
-import tampon from './tampon.png'; // Make sure the logo is in the same directory as this file
+import { useEffect, useState } from "react";
+ import axios from 'axios';
+import { useStateContext } from "../../../contexts/Context";
+import { useParams } from 'react-router-dom';
+
+ import logo from './logo.png'; 
+import signature from './signature.png'; 
+import tampon from './tampon.png'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
  
 function paiement() {
-    
-    useEffect(() => {
+  const currentDate = new Date().toLocaleDateString("fr-FR"); // You can adjust the locale as needed
+
+
+  const { id } = useParams();
+  const [user, setUser] = useState(null);
+ 
+ 
+   useEffect(() => {
+    fetchUserData();
+  }, []);
+
+ 
+
+  useEffect(() => {
+    // Check if user data is available
+    if (user) {
+      // Delay the print action by 3 seconds
+      const printTimeout = setTimeout(() => {
         window.print();
-      }, []);
-      
+      }, 500); // 3000 milliseconds = 3 seconds
+
+      // Clear the timeout if the component unmounts before 3 seconds
+      return () => clearTimeout(printTimeout);
+    }
+  }, [user]);
+
+
+const fetchUserData = async () => {
+  try {
+    const result = await axios(`http://localhost:8000/api/user/${id}`);
+    const userData = result.data; 
+     setUser(userData); 
+
+
+     
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+  }
+};
+
+ 
+
+if (!user) {
+  return <div>Loading...</div>;
+}
+
     return (
 <div>
   <meta charSet="UTF-8" />
@@ -31,13 +77,12 @@ function paiement() {
     </div>
     <div className="title">Avis de Paiement des Frais de Scolarité</div>
     <div className="content">
-      <p className="card-text">Nom de l'étudiant: [Nom de l'étudiant]</p>
-      <p className="card-text">Programme: [Nom du programme]</p>
-      <p className="card-text">Semestre: [Semestre]</p>
-      <p className="card-text">Montant Payee: 100000 Dh</p>
-      <p className="card-text">Montant Restant: 100000 Dh</p>
-      <p className="card-text">Montant Total: 100000 Dh</p>
-      <p className="card-text">Date Limite de Paiement: [Date]</p>
+      <p className="card-text">Nom de l'étudiant:  {user.name}</p>
+      <p className="card-text">Programme:  {user.filliere} </p>
+      <p className="card-text">Montant Payé: {50000 * (user.paiement_status / 100)} Dh</p>
+      <p className="card-text">Montant Restant: {50000-(50000 * (user.paiement_status / 100))} Dh</p>
+      <p className="card-text">Montant Total: 50000 Dh</p>
+      <p className="card-text">Date Limite de Paiement: 17-12-2024</p>
     </div>
     <div className="signature">
       <p>Fait à Fes, Le 01/01/2024</p>

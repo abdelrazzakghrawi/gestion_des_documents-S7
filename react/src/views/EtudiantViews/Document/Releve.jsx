@@ -1,15 +1,59 @@
-import React, { useEffect } from 'react';
-import logo from './logo.png'; // Make sure the logo is in the same directory as this file
-import signature from './signature.png'; // Make sure the logo is in the same directory as this file
-import tampon from './tampon.png'; // Make sure the logo is in the same directory as this file
+import { useEffect, useState } from "react";
+ import axios from 'axios';
+import { useStateContext } from "../../../contexts/Context";
+import { useParams } from 'react-router-dom';
 
-
-
+ import logo from './logo.png'; 
+import signature from './signature.png'; 
+import tampon from './tampon.png'; 
         function Releve() {
-          useEffect(() => {
-            window.print();
-          }, []);
-        
+          const { id } = useParams();
+  const [user, setUser] = useState(null);
+  const currentDate = new Date().toLocaleDateString("fr-FR"); // You can adjust the locale as needed
+
+ 
+   useEffect(() => {
+    fetchUserData();
+  }, []);
+
+ 
+
+  useEffect(() => {
+    // Check if user data is available
+    if (user) {
+      // Delay the print action by 3 seconds
+      const printTimeout = setTimeout(() => {
+        window.print();
+      }, 500); // 3000 milliseconds = 3 seconds
+
+      // Clear the timeout if the component unmounts before 3 seconds
+      return () => clearTimeout(printTimeout);
+    }
+  }, [user]);
+
+
+const fetchUserData = async () => {
+  try {
+    const result = await axios(`http://localhost:8000/api/user/${id}`);
+    const userData = result.data; 
+     setUser(userData); 
+
+
+     
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+  }
+};
+
+ 
+
+if (!user) {
+  return <div>Loading...</div>;
+}
+
+   
+
+
         return (
         <div>
           <meta charSet="UTF-8" />
@@ -32,11 +76,11 @@ import tampon from './tampon.png'; // Make sure the logo is in the same director
               <div className="title">Relevé de Note</div>
               <div style={{marginBottom: '10px'}}>
                 <span>Nom et Prenom : </span>
-                <span>Elkhayyam Mohamed Taha</span>
+                <span>{user.name}</span>
               </div>
               <div style={{marginBottom: '10px'}}>
                 <span>Année et fillière : </span>
-                <span>4 Gin</span>
+                <span>{user.annee} {user.filliere}</span>
               </div>
               <table>
                 <thead>
@@ -125,9 +169,13 @@ import tampon from './tampon.png'; // Make sure the logo is in the same director
                   <b><span>Semestre  :</span> 
                     <span> Validé</span></b> 
                 </div>
+                
                 <img src={signature} alt="Signature" className="signature-image" />
                 <img src={tampon} alt="Tampon" className="stamp" />
+                <p>Fait à Fes, Le {currentDate}</p>
+
               </div>
+              
             </div>
           </div></div>
       );
